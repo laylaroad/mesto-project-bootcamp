@@ -1,6 +1,14 @@
 .profile {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   padding-top: 40px;
   display: flex;
-  flex-direction: row;
-  column-gap: 40px;
+  justify-content: space-between;
+  margin-bottom: 51px;
+}
+
+@media (max-width: 320px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+  }
 }

@@ -1,9 +1,11 @@
 .element {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-content: space-between;
   max-width: 282px;
   min-height: 361px;
   border-radius: 5%;
   background: white;
+  text-overflow: ellipsis;
 }
