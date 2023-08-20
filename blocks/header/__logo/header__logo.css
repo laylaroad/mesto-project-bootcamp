@@ -3,8 +3,10 @@
   min-height: 33px;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 600px) {
   .header__logo {
+    max-width: 103.736px;
+    min-height: 24.396px;
     margin-left: 27px;
     margin-top: 28px;
   }

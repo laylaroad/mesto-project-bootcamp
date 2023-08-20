@@ -8,19 +8,23 @@
   background-image: url("../../../images/Vector.svg");
   background-repeat: no-repeat;
   background-position: center;
+  border: 1px solid white;
 }
 
 .profile__add-button:hover {
   opacity: 50%;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 600px) {
   .profile__add-button {
+    justify-self: stretch;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
     height: 50px;
     margin-top: 33px;
     width: 282px;
-    margin-left: auto;
-    margin-right: auto;
     border: 1px solid white;
   }
 }

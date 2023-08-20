@@ -12,7 +12,7 @@
   position: relative;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 600px) {
   .popup__container {
     max-width: 282px;
     min-height: calc(100vw * 0.4); /*коэффициент ((322px - 282px)/100)*/

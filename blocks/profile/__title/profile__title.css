@@ -6,14 +6,17 @@
   line-height: 48px;
   margin-top: 0;
   margin-bottom: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 600px) {
   .profile__title {
+    margin-bottom: 14px;
     text-align: center;
     font-size: 27px;
     font-style: normal;
-    font-weight: 500;
     line-height: normal;
   }
 }

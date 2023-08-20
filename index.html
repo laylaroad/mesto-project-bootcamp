@@ -10,24 +10,26 @@
 </head>
 
 <body class="page">
-    <header class="header">
+    <header class="header page__container">
         <img class="header__logo" src="images/logo.svg">
     </header>
-    <main class="content">
+    <main class="content page__container">
         <section class="profile">
-            <div class="profile__info">
+            <div class="profile__wrapper">
                 <img class="profile__avatar" src="./images/image.jpg">
-                <div class="profile__text">
-                    <h2 class="profile__title">Жак-Ив Кусто</h2>
-                    <p class="profile__subtitle">Исследователь океана</p>
+                <div class="profile__info">
+                    <div class="profile__text">
+                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <p class="profile__subtitle">Исследователь океана</p>
+                    </div>
+                    <button type="submit" class="profile__edit-button" href="#">
+                    </button>
                 </div>
-                <button type="button" class="profile__edit-button" href="#">
-                </button>
             </div>
             <button type="submit" class="profile__add-button" href="#">
             </button>
         </section>
-        <section class="elements">
+        <section class="elements page__container">
             <div class="element">
                 <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg">
                 <h3 class="element__title">Карачаевск</h3>
@@ -40,7 +42,7 @@
                 </a>
             </div>
             <div class="element">
-                <img class="element__image" src="images/kirill-pershin-1556355-unsplash.png">
+                <img class="element__image" src="images/kirill-pershin-1404681-unsplash_elbrus.png">
                 <h3 class="element__title">Гора Эльбрус</h3>
                 <a class="element__like" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="19" viewBox="0 0 22 19" fill="none">
@@ -88,7 +90,7 @@
             <div class="element">
                 <img class="element__image" src="images/kirill-pershin-1088404-unsplash_cherche.png">
 
-                <h3 class="element__title">Карачаево-Ч...</h3>
+                <h3 class="element__title">Карачаево-Черкесия</h3>
                 <a class="element__like" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="19" viewBox="0 0 22 19" fill="none">
                         <path
@@ -99,10 +101,10 @@
             </div>
         </section>
     </main>
-    <footer class="footer">
+    <footer class="footer page__container">
         © 2020 Mesto Russia
     </footer>
-    <section class="popup popup_opened">
+    <section class="popup">
         <div class="popup__container">
             <button type="button" class="popup__close"></button>
             <form class="popup__form">

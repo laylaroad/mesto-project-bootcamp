@@ -2,20 +2,16 @@
   font-family: "Inter", Arial, Helvetica, sans-serif;
   background-color: #000;
   max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 45px 60px;
   min-width: 320px;
-  padding-left: 200px;
-  padding-right: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  display: block;
   box-sizing: border-box;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 600px) {
   .page {
-    padding-left: 19px;
-    padding-right: 19px;
+    margin: 0;
+    padding: 0;
   }
 }

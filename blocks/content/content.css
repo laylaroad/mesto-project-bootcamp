@@ -1,4 +1,13 @@
 .content {
   display: block;
   box-sizing: border-box;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding-left: 19px;
+    padding-right: 19px;
+  }
 }

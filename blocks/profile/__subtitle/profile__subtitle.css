@@ -7,12 +7,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 600px) {
   .profile__subtitle {
     text-align: center;
     font-size: 14px;
     font-style: normal;
+    margin-left: 3px;
   }
 }
