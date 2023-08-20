@@ -12,6 +12,5 @@
   .profile__text {
     flex-direction: column;
     justify-content: center;
-    /* margin-left: 25px; */
   }
 }
