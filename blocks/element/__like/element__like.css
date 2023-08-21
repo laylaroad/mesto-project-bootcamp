@@ -1,11 +1,15 @@
 .element__like {
-  position: absolute;
-  bottom: 25px;
-  right: 20px;
-  margin: 0;
-  padding: 0;
-  max-width: 22px;
-  min-height: 19px;
+  background-image: url("../../../images/like.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  margin-right: 20px;
+  padding-bottom: 30px;
+  outline: none;
+  background-color: transparent;
+  width: 22px;
+  height: 19px;
+  cursor: pointer;
 }
 
 .element__like:hover {
@@ -13,9 +17,9 @@
 }
 
 .element__like:active {
-  fill: black;
+  color: black;
 }
 
 .element__like:visited {
-  fill: black;
+  color: black;
 }

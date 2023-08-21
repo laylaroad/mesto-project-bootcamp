@@ -7,14 +7,14 @@
   top: -38px;
   background: none;
   border: none;
-  background-image: url("../../../images/Close\ Icon.svg");
+  background-image: url("../../../images/close_icon.svg");
   background-repeat: no-repeat;
   z-index: 1;
   opacity: 100%;
 }
 
 .popup__close:hover {
-  opacity: 50%;
+  opacity: 0.6;
 }
 
 @media (max-width: 320px) {

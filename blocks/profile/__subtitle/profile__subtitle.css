@@ -4,6 +4,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  max-width: 336px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -15,7 +16,6 @@
   .profile__subtitle {
     text-align: center;
     font-size: 14px;
-    font-style: normal;
     margin-left: 3px;
   }
 }

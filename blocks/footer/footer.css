@@ -1,13 +1,8 @@
 .footer {
   max-width: 880px;
   min-height: 18px;
-  color: #545454;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  padding-bottom: 60px;
   padding-top: 67px;
+  margin-bottom: 0;
 }
 
 @media (max-width: 600px) {

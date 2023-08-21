@@ -5,26 +5,26 @@
   justify-self: flex-end;
   align-self: center;
   margin-left: 0;
-  background-image: url("../../../images/Vector.svg");
+  background-image: url("../../../images/vector.svg");
   background-repeat: no-repeat;
   background-position: center;
-  border: 1px solid white;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {
-  opacity: 50%;
+  opacity: 0.6;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .profile__add-button {
     justify-self: stretch;
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
     margin-right: auto;
-    height: 50px;
     margin-top: 33px;
     width: 282px;
-    border: 1px solid white;
   }
 }
