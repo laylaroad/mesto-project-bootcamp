@@ -20,8 +20,8 @@
                 <img class="profile__avatar" alt="Фото пользователя" src="./images/image.jpg">
                 <div class="profile__info">
                     <div class="profile__text">
-                        <h1 class="profile__title">Жак-Ив Кусто</h1>
-                        <p class="profile__subtitle">Исследователь океана</p>
+                        <h1 class="profile__title"></h1>
+                        <p class="profile__subtitle"></p>
                     </div>
                     <button type="button" class="profile__edit-button">
                     </button>
@@ -30,72 +30,63 @@
             <button type="button" class="profile__add-button">
             </button>
         </section>
-        <section class="elements page__container">
-            <article class="element">
-                <img class="element__image" alt="Карачаевск" src="images/kirill-pershin-1088404-unsplash.jpg">
-                <div class="element__caption">
-                    <h3 class="element__title">Карачаевск</h3>
-                    <button type="button" class="element__like">
-                    </button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" alt="Гора Эльбрус" src="images/kirill-pershin-1404681-unsplash_elbrus.png">
-                <div class="element__caption">
-                    <h3 class="element__title">Гора Эльбрус</h3>
-                    <button type="button" class="element__like">
-                    </button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" alt="Домбай" src="images/kirill-pershin-1556355-unsplash.png">
-                <div class="element__caption">
-                    <h3 class="element__title">Домбай</h3>
-                    <button type="button" class="element__like">
-                    </button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" alt="Гора Эльбрус" src="images/kirill-pershin-1404681-unsplash_elbrus.png">
-                <div class="element__caption">
-                    <h3 class="element__title">Гора Эльбрус</h3>
-                    <button type="button" class="element__like">
-                    </button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" alt="Домбай" src="images/kirill-pershin-1556355-unsplash_dombai.png">
-                <div class="element__caption">
-                    <h3 class="element__title">Домбай</h3>
-                    <button type="button" class="element__like">
-                    </button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__image" alt="Карачаево-Черкесия"
-                    src="images/kirill-pershin-1088404-unsplash_cherche.png">
-                <div class="element__caption">
-                    <h3 class="element__title">Карачаево-Черкесия</h3>
-                    <button type="button" class="element__like">
-                    </button>
-                </div>
-            </article>
+        <section class="cards">
         </section>
     </main>
     <footer class="footer page__container">
         <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
-    <div class="popup">
+
+    <div class="popup" id="edit-profile-window">
         <div class="popup__container">
-            <button aria-label="Close" onclick="" type="button" class="popup__close"></button>
-            <form name class="popup__form">
+            <button aria-label="Close" onclick="" type="button" class="popup__close"
+                id="edit-profile-close-button"></button>
+            <form name="" class="popup__form" id="popup-edit-profile">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input name="Имя и фамилия пользователя" type="text" class="popup__field" placeholder="Жак-Ив Кусто">
-                <input name="Профессия" type="text" class="popup__field" placeholder="Исследователь океана">
-                <button type="submit" class="popup__button">Сохранить</button>
+                <input name="Имя и фамилия пользователя" id="name" type="text" class="popup__field"
+                    placeholder="Жак-Ив Кусто" value="" required>
+                <input name="Профессия" type="text" id="job" class="popup__field" placeholder="Исследователь океана"
+                    value="" required>
+                <button type="submit" class="popup__button" id="edit-profile-button">Сохранить</button>
             </form>
         </div>
     </div>
+    <div class="popup" id="add-new-place-window">
+        <div class="popup__container" id="add-new-place-container">
+            <button aria-label="Close" onclick="" type="button" class="popup__close"
+                id="add-new-place-close-button"></button>
+            <form name="" class="popup__form">
+                <h2 class="popup__title" id="new_place_title">Новое место</h2>
+                <input name="Название" type="text" class="popup__field" id="new-place-name" placeholder="Название"
+                    required>
+                <input name="Ссылка на картинку" type="url" class="popup__field" id="new-place-link"
+                    placeholder="Ссылка на картинку" required>
+                <button type="submit" class="popup__button" id="new-place-save-button">Создать</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup popup_new-opened" id="full-card">
+        <div class="full-card">
+            <button aria-label="Close" onclick="" type="button" class="popup__close"
+                id="card-full-close-button"></button>
+            <img class="full-card__image" alt="" src="">
+            <p class="full-card__caption"></p>
+        </div>
+    </div>
+
+    <template id="card-template">
+        <article class="card">
+            <img class="card__image" alt="" src="">
+            <div class="card__caption">
+                <h3 class="card__title"></h3>
+                <button type="button" class="card__like">
+                </button>
+                <button type="button" class="card__delete"> </button>
+            </div>
+        </article>
+    </template>
+    <script src="./main.js"></script>
 </body>
 
 </html>

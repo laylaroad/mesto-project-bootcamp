@@ -17,18 +17,26 @@
   opacity: 0.6;
 }
 
+@media (max-width: 1024px) {
+  .profile__edit-button {
+    margin-left: 14px;
+  }
+}
+
 @media (max-width: 600px) {
   .profile__edit-button {
     margin-left: 9px;
-    margin-top: 30px;
+    margin-top: 45px;
     height: 18px;
     width: 18px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 460px) {
   .profile__edit-button {
-    align-self: start;
     justify-self: start;
+    align-self: start;
+    margin-left: 9px;
+    margin-top: 37px;
   }
 }

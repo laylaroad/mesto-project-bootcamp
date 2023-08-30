@@ -1,4 +1,4 @@
-.element__like {
+.card__like {
   background-image: url("../../../images/like.svg");
   background-position: center;
   background-repeat: no-repeat;
@@ -12,14 +12,10 @@
   cursor: pointer;
 }
 
-.element__like:hover {
+.card__like:hover {
   opacity: 50%;
 }
 
-.element__like:active {
-  color: black;
-}
-
-.element__like:visited {
+.card__like:visited {
   color: black;
 }
