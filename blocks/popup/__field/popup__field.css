@@ -11,3 +11,7 @@
   appearance: none;
   outline: none;
 }
+
+.popup__field:disabled {
+  background-color: #f1f1f1;
+}

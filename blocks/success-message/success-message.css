@@ -1,0 +1,6 @@
+.success-message {
+  color: #23b324;
+  padding: 10px;
+  transition: 0.3s;
+  opacity: 0;
+}

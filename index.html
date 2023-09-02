@@ -20,8 +20,8 @@
                 <img class="profile__avatar" alt="Фото пользователя" src="./images/image.jpg">
                 <div class="profile__info">
                     <div class="profile__text">
-                        <h1 class="profile__title"></h1>
-                        <p class="profile__subtitle"></p>
+                        <h1 class="profile__title" value="">Жак-Ив Кусто</h1>
+                        <p class="profile__subtitle" value="">Исследователь океана</p>
                     </div>
                     <button type="button" class="profile__edit-button">
                     </button>
@@ -41,28 +41,38 @@
         <div class="popup__container">
             <button aria-label="Close" onclick="" type="button" class="popup__close"
                 id="edit-profile-close-button"></button>
-            <form name="" class="popup__form" id="popup-edit-profile">
+
+            <form name="" class="popup__form" id="popup-edit-profile" action="http://httpbin.org/post" method="POST"
+                novalidate>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input name="Имя и фамилия пользователя" id="name" type="text" class="popup__field"
-                    placeholder="Жак-Ив Кусто" value="" required>
-                <input name="Профессия" type="text" id="job" class="popup__field" placeholder="Исследователь океана"
-                    value="" required>
+                    placeholder="Имя и фамилия" value="" required minlength="2" maxlength="200">
+                <input name="Профессия" type="text" id="job" class="popup__field" placeholder="Ваша профессия" value=""
+                    required minlength="2" maxlength="40">
+                <span id="success-message" class="success-message">
+                    Валидация успешно пройдена!
+                </span>
                 <button type="submit" class="popup__button" id="edit-profile-button">Сохранить</button>
             </form>
+
         </div>
     </div>
     <div class="popup" id="add-new-place-window">
         <div class="popup__container" id="add-new-place-container">
             <button aria-label="Close" onclick="" type="button" class="popup__close"
                 id="add-new-place-close-button"></button>
-            <form name="" class="popup__form">
+
+            <form name="" class="popup__form" id="popup-add-new-card" action="http://httpbin.org/post" method="POST"
+                novalidate>
                 <h2 class="popup__title" id="new_place_title">Новое место</h2>
                 <input name="Название" type="text" class="popup__field" id="new-place-name" placeholder="Название"
-                    required>
+                    required minlength="2" maxlength="30">
+                <span class="error-message" id="error-username"></span>
                 <input name="Ссылка на картинку" type="url" class="popup__field" id="new-place-link"
-                    placeholder="Ссылка на картинку" required>
+                    placeholder="Ссылка на картинку" required url>
                 <button type="submit" class="popup__button" id="new-place-save-button">Создать</button>
             </form>
+
         </div>
     </div>
 
