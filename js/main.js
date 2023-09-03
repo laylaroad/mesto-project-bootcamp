@@ -1,3 +1,8 @@
+
+// import { createCard, setupCards } from './card.js';
+
+// import { cleanValidation, enableValidation } from './validation.js';
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -53,6 +58,7 @@ const nameInput = document.querySelector('#name');
 const jobInput = document.querySelector('#job');
 
 setupCards();
+// enableValidation(validationSettings);
 
 function handleClickOnOverlay(popup, evt) {
     if (evt.target.classList.contains('popup_opened')) {
@@ -70,6 +76,7 @@ function openPopup(popup) {
     document.addEventListener('mousedown', function (evt) {
         handleClickOnOverlay(popup, evt);
     });
+
 }
 
 function closePopup(popup) {
@@ -83,7 +90,6 @@ function closePopup(popup) {
         handleClickOnOverlay(popup, evt);
     });
 }
-
 
 profileEditButton.addEventListener('click', function () {
     openPopup(editPopup);
@@ -101,15 +107,6 @@ profileAddButton.addEventListener('click', function () {
 closePopupNewPlaceButton.addEventListener('click', function () {
     closePopup(newItemPopup);
 })
-
-
-function openFullCard(cardLink, cardName) {
-    openPopup(cardPopup);
-    fullImage.src = cardLink;
-    fullImage.alt = cardName;
-    fullCaption.textContent = cardName;
-    closePopup(cardPopup);
-}
 
 function createCard(cardName, cardLink) {
     const cardTemplate = document.querySelector('#card-template').content;
@@ -150,9 +147,18 @@ function setupCards() {
     });
 }
 
+
+function openFullCard(cardLink, cardName) {
+    openPopup(cardPopup);
+    fullImage.src = cardLink;
+    fullImage.alt = cardName;
+    fullCaption.textContent = cardName;
+    closePopup(cardPopup);
+}
+
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
-
+    validateInput([placeName, placeLink]);
     createCard(placeName.value, placeLink.value);
     closePopup(newItemPopup);
     placeName.value = '';
@@ -170,5 +176,50 @@ function handleEditProfileFormSubmit(event) {
 }
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 
-const inputProfileSelector = document.querySelector('.popup__field');
-const invalidPopupField = document.querySelector('.popup__field_invalid');
+
+//переменные валидации форм
+// const fieldInput = document.querySelector('.popup__field');
+const buttonSelector = document.querySelector('.popup__button');
+const formSelector = document.querySelector('.popup__form');
+const invalidTextClass = document.querySelector('.popup__field_invalid');
+
+// //проверка на пустые поля формы
+// function validateInput(inputFields) {
+//     inputFields.forEach((input) => {
+//         if (input.value === '') {
+//             console.log('Ошибка валидации');
+//         }
+//     });
+// }
+
+const inputSelector = '.popup__field';
+
+function showError(input, errorText) {
+    const errorId = 'error-' + input.id;
+    const errorElement = document.getElementById(errorId);
+    errorElement.textContent = errorText;
+}
+
+function hideError(input) {
+    const errorId = 'error-' + input.id;
+    const errorElement = document.getElementById(errorId);
+    errorElement.textContent = '';
+}
+
+function checkField(input) {
+    if (!input.validity.valid) {
+        showError(input, input.validationMessage)
+    } else {
+        hideError(input);
+    }
+}
+
+const inputList = document.querySelectorAll(inputSelector);
+inputList.forEach(input => {
+    input.addEventListener('input', () => checkField(input));
+});
+
+
+// nameInput.addEventListener('input', checkField);
+
+
