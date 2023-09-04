@@ -47,15 +47,11 @@
 
                 <input name="Имя и фамилия пользователя" id="name" type="text" class="popup__field"
                     placeholder="Имя и фамилия" value="" required minlength="2" maxlength="200">
-                <span class="error-message" id="error-name">Ошибка в поле</span>
+                <span class="error-message" id="error-name"></span>
 
                 <input name="Профессия" type="text" id="job" class="popup__field" placeholder="Ваша профессия" value=""
                     required minlength="2" maxlength="40">
-                <span class="error-message" id="error-job">Ошибка в поле</span>
-
-                <span id="success-message" class="success-message">
-                    Валидация успешно пройдена!
-                </span>
+                <span class="error-message" id="error-job"></span>
 
                 <button type="submit" class="popup__button" id="edit-profile-button">Сохранить</button>
             </form>
@@ -75,7 +71,7 @@
                 <span class="error-message" id="error-place"></span>
                 <input name="Ссылка на картинку" type="url" class="popup__field" id="new-place-link"
                     placeholder="Ссылка на картинку" required url>
-                <span class="error-message" id="error-url">Введите URL</span>
+                <span class="error-message" id="error-url"></span>
 
                 <button type="submit" class="popup__button" id="new-place-save-button">Создать</button>
             </form>

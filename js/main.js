@@ -177,33 +177,34 @@ function handleEditProfileFormSubmit(event) {
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 
 
+//FORM VALIDITY
 //переменные валидации форм
-// const fieldInput = document.querySelector('.popup__field');
-const buttonSelector = document.querySelector('.popup__button');
-const formSelector = document.querySelector('.popup__form');
-const invalidTextClass = document.querySelector('.popup__field_invalid');
-
-// //проверка на пустые поля формы
-// function validateInput(inputFields) {
-//     inputFields.forEach((input) => {
-//         if (input.value === '') {
-//             console.log('Ошибка валидации');
-//         }
-//     });
-// }
-
+const buttonSelector = '.popup__button';
+const formSelector = '.popup__form';
+const invalidTextClass = 'popup__field_invalid';
 const inputSelector = '.popup__field';
 
 function showError(input, errorText) {
+    input.classList.add(invalidTextClass);
     const errorId = 'error-' + input.id;
     const errorElement = document.getElementById(errorId);
     errorElement.textContent = errorText;
 }
 
 function hideError(input) {
+    input.classList.remove(invalidTextClass);
     const errorId = 'error-' + input.id;
     const errorElement = document.getElementById(errorId);
     errorElement.textContent = '';
+}
+
+//ф-ция сброса валидации
+function resetValidation(formElement) {
+    formElement.reset();
+    const inputList = formElement.querySelectorAll(inputSelector);
+    inputList.forEach((input) => {
+        hideError(input);
+    });
 }
 
 function checkField(input) {
@@ -214,12 +215,42 @@ function checkField(input) {
     }
 }
 
-const inputList = document.querySelectorAll(inputSelector);
-inputList.forEach(input => {
-    input.addEventListener('input', () => checkField(input));
+function enableButton(button) {
+    button.disabled = false;
+}
+
+function disableButton(button) {
+    button.disabled = true;
+}
+
+function checkButton(formElement, buttonSubmit) {
+    if (formElement.checkValidity()) {
+        enableButton(buttonSubmit)
+    } else {
+        disableButton(buttonSubmit);
+    }
+}
+
+// const formElement = document.querySelector(formSelector);
+
+function setEventListeners(formElement) {
+    const buttonSubmit = formElement.querySelector(buttonSelector);
+    disableButton(buttonSubmit);
+    const inputList = formElement.querySelectorAll(inputSelector);
+
+    inputList.forEach((input) => {
+        input.addEventListener('input', () => {
+            checkField(input);
+            checkButton(formElement, buttonSubmit);
+        });
+    });
+}
+
+
+const formList = document.querySelectorAll(formSelector);
+formList.forEach((formElement) => {
+    setEventListeners(formElement);
 });
 
-
-// nameInput.addEventListener('input', checkField);
 
 
