@@ -63,13 +63,13 @@
             <button aria-label="Close" onclick="" type="button" class="popup__close"
                 id="add-new-place-close-button"></button>
 
-            <form name="" class="popup__form" id="popup-add-new-card" action="http://httpbin.org/post" method="POST"
-                novalidate>
+            <form name="" class="popup__form" id="popup-add-new-card" action="" method="POST" novalidate>
                 <h2 class="popup__title" id="new_place_title">Новое место</h2>
-                <input name="Название" type="text" class="popup__field" id="new-place-name" placeholder="Название"
-                    required minlength="2" maxlength="30">
+                <input name="Название" type="text" class="popup__field" id="place" placeholder="Название" required
+                    minlength="2" maxlength="30">
                 <span class="error-message" id="error-place"></span>
-                <input name="Ссылка на картинку" type="url" class="popup__field" id="new-place-link"
+
+                <input name="Ссылка на картинку" type="url" class="popup__field" id="url"
                     placeholder="Ссылка на картинку" required url>
                 <span class="error-message" id="error-url"></span>
 
@@ -99,7 +99,7 @@
             </div>
         </article>
     </template>
-    <script src="./js/main.js" type="module"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

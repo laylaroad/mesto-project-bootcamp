@@ -6,62 +6,72 @@ const buttonSelector = document.querySelector('.popup__button');
 const formSelector = document.querySelector('.popup__form');
 const invalidTextClass = document.querySelector('.popup__field_invalid');
 
-function showError(input, errorText) {
-    const errorId = 'error-' + input.id;
-    const errorElement = document.getElementById(errorId);
-    errorElement.textContent = errorText;
-    input.classList.add(settings.invalidTextClass)
-}
+const showInputError = (formElement, inputElement, errorMessage) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.add('form__input_type_error');
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add('form__input-error_active');
+};
 
-function hideError(input, settings) {
-    const errorId = 'error-' + input.id;
-    const errorElement = document.getElementById(errorId);
+const hideInputError = (formElement, inputElement) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove('form__input_type_error');
+    errorElement.classList.remove('form__input-error_active');
     errorElement.textContent = '';
-    input.classList.remove(settings.invalidTextClass)
-}
+};
 
-function checkField(input, settings) {
-    if (!input.validity.valid) {
-        showError(input, input.validationMessage, settings);
+const checkInputValidity = (formElement, inputElement) => {
+    if (!inputElement.validity.valid) {
+        showInputError(formElement, inputElement, inputElement.validationMessage);
     } else {
-        hideError(input, settings);
+        hideInputError(formElement, inputElement);
     }
-}
+};
 
-function enableButton(button) {
-    button.disabled = false;
-}
+const hasInvalidInput = (inputList) => {
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+    });
+};
 
-function disableButton(button) {
-    button.disabled = true;
-}
-
-function checkButton(formElement, buttonSubmit) {
-    if (formElement.checkValidity()) {
-        enableButton(buttonSubmit);
+const toggleButtonState = (inputList, buttonElement) => {
+    console.log(hasInvalidInput(inputList));
+    if (hasInvalidInput(inputList)) {
+        buttonElement.classList.add('button_inactive');
     } else {
-        disableButton(buttonSubmit);
+        buttonElement.classList.remove('button_inactive');
     }
-}
+};
 
-function setEventListeners(formElement, settings) {
-    const buttonSubmit = formElement.querySelector(settings.buttonSelector);
-    disableButton(buttonSubmit);
-    const inputList = formElement.querySelectorAll(settings.inputSelector);
+const setEventListeners = (formElement) => {
+    const inputList = Array.from(formElement.querySelectorAll('.form__input'));
+    const buttonElement = formElement.querySelector('.form__submit');
 
-    inputList.forEach((input) => {
-        input.addEventListener('input', () => {
-            checkField(input, settings);
-            checkButton(formElement, buttonSubmit);
+    toggleButtonState(inputList, buttonElement);
+
+    inputList.forEach((inputElement) => {
+        inputElement.addEventListener('input', function () {
+            checkInputValidity(formElement, inputElement);
+            toggleButtonState(inputList, buttonElement);
         });
     });
-}
+};
 
-export default function enableValidation(settings) {
-    const formList = document.querySelectorAll(settings.formSelector);
+const enableValidation = () => {
+    const formList = Array.from(document.querySelectorAll('.form'));
     formList.forEach((formElement) => {
-        setEventListeners(formElement, settings);
+        formElement.addEventListener('submit', function (evt) {
+            evt.preventDefault();
+        });
+
+        const fieldsetList = Array.from(formElement.querySelectorAll('.form__set'));
+
+        fieldsetList.forEach((fieldset) => {
+            setEventListeners(fieldset);
+        });
     });
-}
+};
+
+enableValidation();
 
 export { cleanValidation, enableValidation };

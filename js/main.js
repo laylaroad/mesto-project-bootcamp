@@ -47,8 +47,8 @@ const cardPopupCloseButton = document.getElementById('card-full-close-button');
 const fullImage = cardPopup.querySelector('.full-card__image');
 const fullCaption = cardPopup.querySelector('.full-card__caption');
 
-const placeName = document.querySelector('#new-place-name');
-const placeLink = document.querySelector('#new-place-link');
+const placeName = document.querySelector('#place');
+const placeLink = document.querySelector('#url');
 
 const editProfileForm = document.querySelector('#popup-edit-profile');
 const profileText = document.querySelector('.profile__text');
@@ -93,13 +93,16 @@ function closePopup(popup) {
 
 profileEditButton.addEventListener('click', function () {
     openPopup(editPopup);
+    // resetValidation(formElement);
 });
+
 
 closePopupButton.addEventListener('click', function () {
     closePopup(editPopup);
 })
 
 profileAddButton.addEventListener('click', function () {
+
     openPopup(newItemPopup);
 
 })
@@ -158,7 +161,6 @@ function openFullCard(cardLink, cardName) {
 
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
-    validateInput([placeName, placeLink]);
     createCard(placeName.value, placeLink.value);
     closePopup(newItemPopup);
     placeName.value = '';
@@ -185,17 +187,18 @@ const invalidTextClass = 'popup__field_invalid';
 const inputSelector = '.popup__field';
 
 function showError(input, errorText) {
-    input.classList.add(invalidTextClass);
-    const errorId = 'error-' + input.id;
+    const errorId = `error-${input.id}`;
     const errorElement = document.getElementById(errorId);
     errorElement.textContent = errorText;
+    input.classList.add(invalidTextClass);
 }
 
 function hideError(input) {
-    input.classList.remove(invalidTextClass);
-    const errorId = 'error-' + input.id;
+    const errorId = `error-${input.id}`;
+    console.log(errorId);
     const errorElement = document.getElementById(errorId);
     errorElement.textContent = '';
+    input.classList.remove(invalidTextClass);
 }
 
 //ф-ция сброса валидации
@@ -208,8 +211,9 @@ function resetValidation(formElement) {
 }
 
 function checkField(input) {
+    const errorText = input.validationMessage;
     if (!input.validity.valid) {
-        showError(input, input.validationMessage)
+        showError(input, errorText)
     } else {
         hideError(input);
     }
@@ -247,10 +251,12 @@ function setEventListeners(formElement) {
 }
 
 
-const formList = document.querySelectorAll(formSelector);
+// const formList = document.querySelectorAll(formSelector);
+const formList = Array.from(document.querySelectorAll(formSelector));
 formList.forEach((formElement) => {
     setEventListeners(formElement);
 });
+
 
 
 
