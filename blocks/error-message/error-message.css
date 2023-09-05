@@ -2,7 +2,7 @@
   color: #ff3333;
   font-size: 0.8em;
   transition: 0.3s;
-  padding: 0px;
+  margin-top: 5px;
   display: block;
   min-height: 30px;
 }
