@@ -59,11 +59,11 @@ const nameInput = document.querySelector('#name');
 const jobInput = document.querySelector('#job');
 
 const validationSettings = {
-    buttonSelector: '.popup__button',
-    formSelector: '.popup__form',
-    invalidTextClass: 'popup__field_invalid',
-    inputSelector: '.popup__field',
-}
+    buttonSelector: ".popup__button",
+    formSelector: ".popup__form",
+    invalidTextClass: "popup__field_invalid",
+    inputSelector: ".popup__field",
+};
 
 
 setupCards();
@@ -161,7 +161,6 @@ export function openFullCard(cardLink, cardName) {
     fullCaption.textContent = cardName;
     closePopup(cardPopup);
 }
-enableValidation(validationSettings);
 
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
@@ -176,8 +175,9 @@ function handleEditProfileFormSubmit(event) {
     event.preventDefault();
     profileText.querySelector('.profile__title').textContent = nameInput.value;
     profileText.querySelector('.profile__subtitle').textContent = jobInput.value;
-
+    resetValidation(editProfileForm, validationSettings);
     closePopup(editPopup);
 }
+enableValidation(validationSettings);
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 

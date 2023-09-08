@@ -1,17 +1,20 @@
 //FORM VALIDITY
 //переменные валидации форм
+
 function showError(input, errorText, settings) {
     const errorId = `error-${input.id}`;
     const errorElement = document.getElementById(errorId);
     errorElement.textContent = errorText;
-    input.classList.add('popup__field_invalid');
+    console.log('popup__field_invalid', settings);
+    input.classList.add(settings.invalidTextClass);
 }
 
 function hideError(input, settings) {
     const errorId = `error-${input.id}`;
     const errorElement = document.getElementById(errorId);
     errorElement.textContent = '';
-    input.classList.remove('popup__field_invalid');
+    console.log('popup__field_invalid', settings);
+    input.classList.remove(settings.invalidTextClass);
 }
 
 //ф-ция сброса валидации
@@ -28,7 +31,7 @@ function checkField(input, settings) {
     if (!input.validity.valid) {
         showError(input, errorText, settings)
     } else {
-        hideError(input);
+        hideError(input, settings);
     }
 }
 
@@ -55,7 +58,7 @@ function setEventListeners(formElement, settings) {
 
     inputList.forEach((input) => {
         input.addEventListener('input', () => {
-            checkField(input);
+            checkField(input, settings);
             checkButton(formElement, buttonSubmit);
         });
     });

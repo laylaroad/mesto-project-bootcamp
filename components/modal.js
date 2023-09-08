@@ -1,3 +1,5 @@
+
+
 function handleClickOnOverlay(popup, evt) {
     if (evt.target.classList.contains('popup_opened')) {
         closePopup(popup);
