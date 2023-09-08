@@ -65,7 +65,6 @@ const validationSettings = {
     inputSelector: '.popup__field',
 }
 
-
 setupCards();
 
 // function handleClickOnOverlay(popup, evt) {
@@ -109,7 +108,6 @@ closePopupButton.addEventListener('click', function () {
 })
 
 profileAddButton.addEventListener('click', function () {
-
     openPopup(newItemPopup);
 
 })
@@ -155,13 +153,13 @@ function setupCards() {
     });
 }
 
-// function openFullCard(cardLink, cardName) {
-//     openPopup(cardPopup);
-//     fullImage.src = cardLink;
-//     fullImage.alt = cardName;
-//     fullCaption.textContent = cardName;
-//     closePopup(cardPopup);
-// }
+export function openFullCard(cardLink, cardName) {
+    openPopup(cardPopup);
+    fullImage.src = cardLink;
+    fullImage.alt = cardName;
+    fullCaption.textContent = cardName;
+    closePopup(cardPopup);
+}
 
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();

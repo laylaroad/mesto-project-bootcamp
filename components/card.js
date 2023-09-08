@@ -1,4 +1,6 @@
+import { openFullCard } from "./main.js";
 import { openPopup, closePopup } from "./modal.js";
+
 
 const cardPopupCloseButton = document.getElementById('card-full-close-button');
 const cardPopup = document.getElementById('full-card');
@@ -36,12 +38,5 @@ function createCard(cardName, cardLink) {
     return cardElement;
 }
 
-function openFullCard(cardLink, cardName) {
-    openPopup(cardPopup);
-    fullImage.src = cardLink;
-    fullImage.alt = cardName;
-    fullCaption.textContent = cardName;
-    closePopup(cardPopup);
-}
 
-export { createCard, openFullCard };
+export { createCard };
