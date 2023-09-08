@@ -1,5 +1,5 @@
 
-import { enableValidation } from "./validation.js";
+import { enableValidation, resetValidation } from "./validation.js";
 
 import { createCard } from "./card.js";
 
@@ -64,6 +64,7 @@ const validationSettings = {
     invalidTextClass: 'popup__field_invalid',
     inputSelector: '.popup__field',
 }
+
 
 setupCards();
 
@@ -160,12 +161,12 @@ export function openFullCard(cardLink, cardName) {
     fullCaption.textContent = cardName;
     closePopup(cardPopup);
 }
+enableValidation(validationSettings);
 
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
     createCard(placeName.value, placeLink.value);
     closePopup(newItemPopup);
-    enableValidation(validationSettings);
     placeName.value = '';
     placeLink.value = '';
 }
@@ -175,8 +176,8 @@ function handleEditProfileFormSubmit(event) {
     event.preventDefault();
     profileText.querySelector('.profile__title').textContent = nameInput.value;
     profileText.querySelector('.profile__subtitle').textContent = jobInput.value;
-    enableValidation(validationSettings);
 
     closePopup(editPopup);
 }
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
+

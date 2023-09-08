@@ -4,14 +4,14 @@ function showError(input, errorText, settings) {
     const errorId = `error-${input.id}`;
     const errorElement = document.getElementById(errorId);
     errorElement.textContent = errorText;
-    input.classList.add(settings.invalidTextClass);
+    input.classList.add('popup__field_invalid');
 }
 
 function hideError(input, settings) {
     const errorId = `error-${input.id}`;
     const errorElement = document.getElementById(errorId);
     errorElement.textContent = '';
-    input.classList.remove(settings.invalidTextClass);
+    input.classList.remove('popup__field_invalid');
 }
 
 //ф-ция сброса валидации
@@ -66,4 +66,4 @@ function enableValidation(settings) {
         setEventListeners(formElement, settings));
 }
 
-export { enableValidation, resetValidation };
+export { resetValidation, enableValidation };
