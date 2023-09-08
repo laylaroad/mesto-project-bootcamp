@@ -1,5 +1,5 @@
 
-import { enableValidation, resetValidation } from "./validation.js";
+import { enableValidation } from "./validation.js";
 
 import { createCard } from "./card.js";
 
@@ -168,7 +168,6 @@ function handleNewPlaceFormSubmit(event) {
     createCard(placeName.value, placeLink.value);
     closePopup(newItemPopup);
     enableValidation(validationSettings);
-    resetValidation(validationSettings);
     placeName.value = '';
     placeLink.value = '';
 }
