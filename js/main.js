@@ -1,7 +1,4 @@
 
-// import { createCard, setupCards } from './card.js';
-
-// import { cleanValidation, enableValidation } from './validation.js';
 
 const initialCards = [
     {
@@ -178,7 +175,6 @@ function handleEditProfileFormSubmit(event) {
 }
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 
-
 //FORM VALIDITY
 //переменные валидации форм
 const buttonSelector = '.popup__button';
@@ -235,7 +231,6 @@ function checkButton(formElement, buttonSubmit) {
     }
 }
 
-// const formElement = document.querySelector(formSelector);
 
 function setEventListeners(formElement) {
     const buttonSubmit = formElement.querySelector(buttonSelector);

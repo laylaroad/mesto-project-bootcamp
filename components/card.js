@@ -1,12 +1,17 @@
-export default function createCard(cardName, cardLink) {
+import { openPopup, closePopup } from "./modal.js";
+
+const cardPopupCloseButton = document.getElementById('card-full-close-button');
+const cardPopup = document.getElementById('full-card');
+const fullImage = cardPopup.querySelector('.full-card__image');
+const fullCaption = cardPopup.querySelector('.full-card__caption');
+
+function createCard(cardName, cardLink) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-
     const cardImage = cardElement.querySelector('.card__image');
     const cardTitle = cardElement.querySelector('.card__title');
     const likeButton = cardElement.querySelector('.card__like');
     const deleteButton = cardElement.querySelector('.card__delete');
-
     cardImage.src = cardLink;
     cardImage.alt = cardName;
     cardTitle.textContent = cardName;
@@ -31,8 +36,12 @@ export default function createCard(cardName, cardLink) {
     return cardElement;
 }
 
-export default function setupCards() {
-    initialCards.forEach(({ name, link }) => {
-        createCard(name, link);
-    });
+function openFullCard(cardLink, cardName) {
+    openPopup(cardPopup);
+    fullImage.src = cardLink;
+    fullImage.alt = cardName;
+    fullCaption.textContent = cardName;
+    closePopup(cardPopup);
 }
+
+export { createCard, openFullCard };
