@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="descriptiom" content="Делитесь своими фото из путешествий">
+    <title>Mesto</title>
+    <!-- <link rel="stylesheet" href="pages/index.css"> -->
+</head>
+
+<body class="page">
+    <header class="header page__container">
+        <!-- <img class="header__logo" alt="Логотип" src="images/logo.svg"> -->
+        <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
+    </header>
+    <main class="content page__container">
+        <section class="profile">
+            <div class="profile__wrapper">
+                <img class="profile__avatar" alt="Фото пользователя" src="./images/image.jpg">
+                <img class="header__logo" src="<%=require('./images/image.jpg')%>" alt="Фото пользователя">
+                <div class="profile__info">
+                    <div class="profile__text">
+                        <h1 class="profile__title" value="">Жак-Ив Кусто</h1>
+                        <p class="profile__subtitle" value="">Исследователь океана</p>
+                    </div>
+                    <button type="button" class="profile__edit-button">
+                    </button>
+                </div>
+            </div>
+            <button type="button" class="profile__add-button">
+            </button>
+        </section>
+        <section class="cards">
+        </section>
+    </main>
+    <footer class="footer page__container">
+        <p class="footer__copyright">© 2023 Mesto Russia</p>
+    </footer>
+
+    <div class="popup" id="edit-profile-window">
+        <div class="popup__container">
+            <button aria-label="Close" onclick="" type="button" class="popup__close"
+                id="edit-profile-close-button"></button>
+
+            <form name="" class="popup__form" id="popup-edit-profile" action="" method="POST" novalidate>
+                <h2 class="popup__title">Редактировать профиль</h2>
+
+                <input name="Имя и фамилия пользователя" id="name" type="text" class="popup__field"
+                    placeholder="Имя и фамилия" value="" required minlength="2" maxlength="200">
+                <span class="error-message" id="error-name"></span>
+
+                <input name="Профессия" type="text" id="job" class="popup__field" placeholder="Ваша профессия" value=""
+                    required minlength="2" maxlength="40">
+                <span class="error-message" id="error-job"></span>
+
+                <button type="submit" class="popup__button" id="edit-profile-button">Сохранить</button>
+            </form>
+
+        </div>
+    </div>
+    <div class="popup" id="add-new-place-window">
+        <div class="popup__container" id="add-new-place-container">
+            <button aria-label="Close" onclick="" type="button" class="popup__close"
+                id="add-new-place-close-button"></button>
+
+            <form name="" class="popup__form" id="popup-add-new-card" action="" method="POST" novalidate>
+                <h2 class="popup__title" id="new_place_title">Новое место</h2>
+                <input name="Название" type="text" class="popup__field" id="place" placeholder="Название" required
+                    minlength="2" maxlength="30">
+                <span class="error-message" id="error-place"></span>
+
+                <input name="Ссылка на картинку" type="url" class="popup__field" id="url"
+                    placeholder="Ссылка на картинку" required url>
+                <span class="error-message" id="error-url"></span>
+
+                <button type="submit" class="popup__button" id="new-place-save-button">Создать</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="popup popup_new-opened" id="full-card">
+        <div class="full-card">
+            <button aria-label="Close" onclick="" type="button" class="popup__close"
+                id="card-full-close-button"></button>
+            <img class="full-card__image" alt="" src="">
+            <p class="full-card__caption"></p>
+        </div>
+    </div>
+
+    <template id="card-template">
+        <article class="card">
+            <img class="card__image" alt="" src="">
+            <div class="card__caption">
+                <h3 class="card__title"></h3>
+                <button type="button" class="card__like">
+                </button>
+                <button type="button" class="card__delete"> </button>
+            </div>
+        </article>
+    </template>
+    <!-- <script type="module" src="./components/main.js"></script>
+    <script type="module" src="./components/card.js"></script>
+    <script type="module" src="./components/modal.js"></script>
+    <script type="module" src="./components/validation.js"></script> -->
+</body>
+
+</html>

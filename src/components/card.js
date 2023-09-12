@@ -1,4 +1,4 @@
-import { openFullCard } from "./main.js";
+import { openFullCard } from "../index.js";
 import { openPopup, closePopup } from "./modal.js";
 
 

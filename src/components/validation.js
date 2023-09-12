@@ -5,7 +5,6 @@ function showError(input, errorText, settings) {
     const errorId = `error-${input.id}`;
     const errorElement = document.getElementById(errorId);
     errorElement.textContent = errorText;
-    console.log('popup__field_invalid', settings);
     input.classList.add(settings.invalidTextClass);
 }
 
@@ -13,7 +12,6 @@ function hideError(input, settings) {
     const errorId = `error-${input.id}`;
     const errorElement = document.getElementById(errorId);
     errorElement.textContent = '';
-    console.log('popup__field_invalid', settings);
     input.classList.remove(settings.invalidTextClass);
 }
 

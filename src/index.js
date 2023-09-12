@@ -1,9 +1,23 @@
 
-import { enableValidation, resetValidation } from "./validation.js";
+import './styles/index.css';
 
-import { createCard } from "./card.js";
+// теперь картинки можно импортировать,
+// вебпак добавит в переменные правильные пути
+const profileAvatar = new URL('./images/image.jpg', import.meta.url);
+const closeButton = new URL('./images/close_icon.svg', import.meta.url);
+const logo = new URL('./images/logo.svg', import.meta.url);
 
-import { handleClickOnOverlay, closePopup, openPopup } from "./modal.js";
+const whoIsTheGoat = [
+    { name: 'profileAvatar', image: './images/image.jpg' },
+    { name: 'closeButton', image: './images/close_icon.svg' },
+    { name: 'logo', image: './images/logo.svg' }
+];
+
+import { enableValidation, resetValidation } from "./components/validation.js";
+
+import { createCard } from "./components/card.js";
+
+import { handleClickOnOverlay, closePopup, openPopup } from "./components/modal.js";
 
 const initialCards = [
     {
