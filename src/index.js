@@ -1,18 +1,6 @@
 
 import './pages/index.css';
 
-// теперь картинки можно импортировать,
-// вебпак добавит в переменные правильные пути
-const profileAvatar = new URL('./images/image.jpg', import.meta.url);
-const closeButton = new URL('./images/close_icon.svg', import.meta.url);
-const logo = new URL('./images/logo.svg', import.meta.url);
-
-const whoIsTheGoat = [
-    { name: 'profileAvatar', image: './images/image.jpg' },
-    { name: 'closeButton', image: './images/close_icon.svg' },
-    { name: 'logo', image: './images/logo.svg' }
-];
-
 import { enableValidation, resetValidation } from "./components/validation.js";
 
 import { createCard } from "./components/card.js";
@@ -82,37 +70,6 @@ const validationSettings = {
 
 setupCards();
 
-// function handleClickOnOverlay(popup, evt) {
-//     if (evt.target.classList.contains('popup_opened')) {
-//         closePopup(popup);
-//     }
-// }
-
-// function openPopup(popup) {
-//     popup.classList.add('popup_opened');
-//     document.addEventListener('keydown', function (evt) {
-//         if (evt.key === 'Escape') {
-//             closePopup(popup);
-//         }
-//     });
-//     document.addEventListener('mousedown', function (evt) {
-//         handleClickOnOverlay(popup, evt);
-//     });
-
-// }
-
-// function closePopup(popup) {
-//     popup.classList.remove('popup_opened');
-//     document.removeEventListener('keydown', function (evt) {
-//         if (evt.key === 'Escape') {
-//             closePopup(popup);
-//         }
-//     });
-//     document.removeEventListener('mousedown', function (evt) {
-//         handleClickOnOverlay(popup, evt);
-//     });
-// }
-
 profileEditButton.addEventListener('click', function () {
     openPopup(editPopup);
 });
@@ -130,37 +87,6 @@ profileAddButton.addEventListener('click', function () {
 closePopupNewPlaceButton.addEventListener('click', function () {
     closePopup(newItemPopup);
 })
-
-// function createCard(cardName, cardLink) {
-//     const cardTemplate = document.querySelector('#card-template').content;
-//     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-//     const cardImage = cardElement.querySelector('.card__image');
-//     const cardTitle = cardElement.querySelector('.card__title');
-//     const likeButton = cardElement.querySelector('.card__like');
-//     const deleteButton = cardElement.querySelector('.card__delete');
-//     cardImage.src = cardLink;
-//     cardImage.alt = cardName;
-//     cardTitle.textContent = cardName;
-//     likeButton.addEventListener('click', () => {
-//         likeButton.classList.toggle('card__like_active');
-//     });
-//     deleteButton.addEventListener('click', () => {
-//         cardElement.remove();
-//     });
-//     cardImage.addEventListener('click', () => {
-//         openFullCard(cardLink, cardName);
-//     })
-//     cardImage.addEventListener('click', function () {
-//         openPopup(cardPopup);
-//     })
-
-//     cardPopupCloseButton.addEventListener('click', function () {
-//         closePopup(cardPopup);
-//     })
-
-//     document.querySelector('.cards').prepend(cardElement);
-//     return cardElement;
-// }
 
 function setupCards() {
     initialCards.forEach(({ name, link }) => {
