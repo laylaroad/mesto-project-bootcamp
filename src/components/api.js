@@ -7,17 +7,30 @@ const config = {
     }
 };
 
+//удаляем лайк
+const deleteLike = (id) => {
+    return request(`${api.config.baseUrl}/ cards/${id}`, {
+        method: 'DELETE',
+        headers: api.config.headers,
+    });
+};
+
+//ставим лайк
+const putLike = (id) => {
+    return request(`${api.config.baseUrl}/ cards/${id}`, {
+        method: 'PUT',
+        headers: api.config.headers,
+    });
+};
 
 
-//загрузка карточек с сервера
-fetch('https://nomoreparties.co/v1/cohortId/users/me', {
-    method: 'PATCH',
-    headers: {
-        authorization: '5970e7b5-fad8-4b45-bc23-ee4a5f3f9441',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        name: 'Marie Skłodowska Curie',
-        about: 'Physicist and Chemist',
-    })
-});
+const newAvatar = (avatar) => {
+    return request(`${api.config.baseUrl}/avatar/${id}`), {
+        method: 'PATCH',
+        headers: config.headers,
+        body: JSON.stringify({
+            avatar,
+        }),
+    }
+};
+

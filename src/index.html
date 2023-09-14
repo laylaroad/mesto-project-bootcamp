@@ -12,15 +12,16 @@
 
 <body class="page">
     <header class="header page__container">
-        <img src="<%=require('./images/logo.svg')%>" alt="Логотип">
+        <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
     </header>
     <main class="content page__container">
         <section class="profile">
             <div class="profile__wrapper">
                 <div class="profile__info">
                     <div class="profile__text">
-                        <img src="<%=require('./images/avatar.svg')%>" alt="Аватар пользователя">
-                        <h1 class="profile__title" value="">Жак-Ив Кусто</h1>
+                        <img class="profile__avatar" src="<%=require('./images/avatar.svg')%>" alt="Аватар пользователя"
+                            id="change-avatar-icon">
+                        <h1 class=" profile__title" value="">Жак-Ив Кусто</h1>
                         <p class="profile__subtitle" value="">Исследователь океана</p>
                     </div>
                     <button type="button" class="profile__edit-button">

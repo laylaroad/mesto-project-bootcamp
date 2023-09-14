@@ -58,6 +58,8 @@ const whoIsTheGoat = [
     { name: 'Inter Regular Woff Two', link: InterRegularWoffTwo },
 ];
 
+let userId;
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -94,8 +96,8 @@ const closePopupNewPlaceButton = document.querySelector('#add-new-place-close-bu
 const editPopup = document.getElementById('edit-profile-window');
 const newItemPopup = document.getElementById('add-new-place-window');
 
-const cards = document.querySelectorAll('.card');
-const addNewPlaceSubmitButton = document.getElementById('new-place-save-button');
+// const cards = document.querySelectorAll('.card');
+// const addNewPlaceSubmitButton = document.getElementById('new-place-save-button');
 
 const cardPopup = document.getElementById('full-card');
 const fullImage = cardPopup.querySelector('.full-card__image');
@@ -106,7 +108,11 @@ const placeLink = document.querySelector('#url');
 
 const editProfileForm = document.querySelector('#popup-edit-profile');
 const profileText = document.querySelector('.profile__text');
-const editProfileSubmitButton = document.querySelector('#edit-profile-button');
+
+const addNewAvatarPopup = document.getElementById('new-avatar');
+const addAvatarIcon = document.getElementById('change-avatar-icon');
+const submitAvatarButton = document.getElementById('save-new-avatar');
+// const editProfileSubmitButton = document.querySelector('#edit-profile-button');
 
 const nameInput = document.querySelector('#name');
 const jobInput = document.querySelector('#job');
@@ -118,8 +124,21 @@ const validationSettings = {
     inputSelector: ".popup__field",
 };
 
-
 setupCards();
+
+// Promise.all([], [])
+// .then ([data, cards]) => {
+//     profileName.textContent = data.name;
+//     profileJob.textContent = data.about;
+//     userId.data._id;
+//     cards.forEach((card) => {
+//         const newCard = createCard(card);
+//         elements.Container.append(newCard);
+//     });
+// })
+// .catch((error) => {
+//     console.error('Error profile info', error);
+// });
 
 profileEditButton.addEventListener('click', function () {
     openPopup(editPopup);
@@ -138,6 +157,12 @@ profileAddButton.addEventListener('click', function () {
 closePopupNewPlaceButton.addEventListener('click', function () {
     closePopup(newItemPopup);
 })
+
+function changeAvatar() {
+    openPopup(addNewAvatarPopup);
+}
+
+addAvatarIcon.addEventListener('click', changeAvatar);
 
 function setupCards() {
     initialCards.forEach(({ name, link }) => {
@@ -167,8 +192,25 @@ function handleEditProfileFormSubmit(event) {
     profileText.querySelector('.profile__title').textContent = nameInput.value;
     profileText.querySelector('.profile__subtitle').textContent = jobInput.value;
     resetValidation(editProfileForm, validationSettings);
+    profileEditButton.textContent = "Сохранение...";
     closePopup(editPopup);
 }
 enableValidation(validationSettings);
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 
+
+//часть функции, которая добавляет инфу на страницу; добавить после кнопки с сохранением
+// changeUserProfile(nameValue, jobValue)
+// .then((res) => {
+//     console.log('Информация добавлена!');
+//     profileName.textContent = res.name;
+//     profileJob.textContent = res.about;
+//     closePopup(editPopup);
+// })
+// .catch((error) => {
+//     console.error('Что-то не так!', error);
+// })
+// .finally(() => {
+//     profileEditButton.textContent = "Сохранить";
+// });
+// }
