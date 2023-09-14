@@ -6,20 +6,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="descriptiom" content="Делитесь своими фото из путешествий">
+    <link type="image/x-icon" href="./images/favicon-ico.svg" rel="shortcut icon">
     <title>Mesto</title>
 </head>
 
 <body class="page">
     <header class="header page__container">
-        <!-- <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип"> -->
+        <img src="<%=require('./images/logo.svg')%>" alt="Логотип">
     </header>
     <main class="content page__container">
         <section class="profile">
             <div class="profile__wrapper">
-                <!-- <img class="header__logo" src="<%=require('./images/avatar.svg')%>" alt="Фото пользователя" -->
-                <!-- id="new-avatar-button"> -->
                 <div class="profile__info">
                     <div class="profile__text">
+                        <img src="<%=require('./images/avatar.svg')%>" alt="Аватар пользователя">
                         <h1 class="profile__title" value="">Жак-Ив Кусто</h1>
                         <p class="profile__subtitle" value="">Исследователь океана</p>
                     </div>
@@ -91,7 +91,7 @@
     <div class="popup" id="new-avatar">
         <div class="popup__container" id="new-avatar-container">
             <button aria-label="Close" onclick="" type="button" class="popup__close"
-                id="add-new-place-close-button"></button>
+                id="add-new-avatar-button"></button>
 
             <form name="" class="popup__form" id="new-avatar-form" action="" method="POST" novalidate>
                 <h2 class="popup__title" id="new-avatar-title">Обновите аватар</h2>
