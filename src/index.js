@@ -45,7 +45,7 @@ const closePopupNewPlaceButton = document.querySelector('#add-new-place-close-bu
 const editPopup = document.getElementById('edit-profile-window');
 const newItemPopup = document.getElementById('add-new-place-window');
 
-// const cards = document.querySelectorAll('.card');
+export const cardsElements = document.querySelector('.cards');
 // const addNewPlaceSubmitButton = document.getElementById('new-place-save-button');
 
 export const cardPopup = document.getElementById('full-card');
@@ -123,6 +123,7 @@ function setupCards() {
         createCard(name, link);
     });
 }
+
 
 export function openFullCard(cardLink, cardName) {
     openPopup(cardPopup);

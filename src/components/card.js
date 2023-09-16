@@ -1,4 +1,4 @@
-import { openFullCard, cardPopup } from "../index.js";
+import { openFullCard, cardPopup, cardsElements } from "../index.js";
 
 import { openPopup } from "./modal.js";
 
@@ -30,7 +30,7 @@ function createCard(cardName, cardLink) {
 }
 
 function addCardElement(cardElement) {
-    document.querySelector('.cards').prepend(cardElement);
+    cardsElements.prepend(cardElement);
 }
 
 export { createCard, addCardElement };
