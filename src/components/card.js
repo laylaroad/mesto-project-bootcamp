@@ -1,11 +1,6 @@
-import { openFullCard } from "../index.js";
+import { openFullCard, cardPopup, cardPopupCloseButton } from "../index.js";
+
 import { openPopup, closePopup } from "./modal.js";
-
-
-const cardPopupCloseButton = document.getElementById('card-full-close-button');
-const cardPopup = document.getElementById('full-card');
-const fullImage = cardPopup.querySelector('.full-card__image');
-const fullCaption = cardPopup.querySelector('.full-card__caption');
 
 function createCard(cardName, cardLink) {
     const cardTemplate = document.querySelector('#card-template').content;

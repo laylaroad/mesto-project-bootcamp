@@ -48,7 +48,8 @@ const newItemPopup = document.getElementById('add-new-place-window');
 // const cards = document.querySelectorAll('.card');
 // const addNewPlaceSubmitButton = document.getElementById('new-place-save-button');
 
-const cardPopup = document.getElementById('full-card');
+export const cardPopup = document.getElementById('full-card');
+export const cardPopupCloseButton = document.getElementById('card-full-close-button');
 const fullImage = cardPopup.querySelector('.full-card__image');
 const fullCaption = cardPopup.querySelector('.full-card__caption');
 
@@ -125,7 +126,8 @@ export function openFullCard(cardLink, cardName) {
     fullImage.alt = cardName;
     fullCaption.textContent = cardName;
     closePopup(cardPopup);
-}
+};
+
 
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
