@@ -1,6 +1,6 @@
 .popup__container {
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   box-sizing: border-box;
   width: 100%;
   max-width: 430px;
@@ -12,6 +12,7 @@
   padding-left: 36px;
   padding-right: 36px;
   position: relative;
+  gap: 15px;
 }
 
 @media (max-width: 600px) {

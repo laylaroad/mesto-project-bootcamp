@@ -2,9 +2,12 @@
   border-radius: 50%;
   width: 120px;
   height: 120px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .profile__avatar {
     margin-left: auto;
     margin-right: auto;

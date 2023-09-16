@@ -1,11 +1,6 @@
 .card__like {
   background-image: url("../../../images/like-disabled.svg");
-  background-position: center;
-  background-repeat: no-repeat;
   border: none;
-  margin-right: 20px;
-  padding-bottom: 30px;
-  outline: none;
   background-color: transparent;
   width: 22px;
   height: 19px;
@@ -14,8 +9,4 @@
 
 .card__like:hover {
   opacity: 50%;
-}
-
-.card__like:visited {
-  color: black;
 }

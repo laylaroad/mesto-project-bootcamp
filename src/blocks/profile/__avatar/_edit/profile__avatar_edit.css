@@ -22,6 +22,12 @@
 }
 
 .profile__avatar_edit:hover:before {
-  background-color: black;
   opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .profile__avatar_edit {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
