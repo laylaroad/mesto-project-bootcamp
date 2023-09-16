@@ -118,9 +118,12 @@ function changeAvatar() {
 
 addAvatarIcon.addEventListener('click', changeAvatar);
 
+
 function setupCards() {
     initialCards.forEach(({ name, link }) => {
+        const newCard = createCard(name, link);
         createCard(name, link);
+        cardsElements.append(newCard);
     });
 }
 
@@ -136,7 +139,8 @@ export function openFullCard(cardLink, cardName) {
 
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
-    createCard(placeName.value, placeLink.value);
+    const addCard = createCard(placeName.value, placeLink.value);
+    cardsElements.prepend(addCard);
     closePopup(newItemPopup);
     placeName.value = '';
     placeLink.value = '';
