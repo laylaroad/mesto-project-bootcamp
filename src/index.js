@@ -1,7 +1,7 @@
 
 import './pages/index.css';
 
-import { enableValidation, resetValidation } from "./components/validation.js";
+import { enableValidation } from "./components/validation.js";
 
 import { createCard } from "./components/card.js";
 
@@ -151,7 +151,6 @@ function handleEditProfileFormSubmit(event) {
     event.preventDefault();
     profileText.querySelector('.profile__title').textContent = nameInput.value;
     profileText.querySelector('.profile__subtitle').textContent = jobInput.value;
-    resetValidation(editProfileForm, validationSettings);
     // profileEditButton.textContent = "Сохранение...";
     closePopup(editPopup);
 }
@@ -173,4 +172,3 @@ editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 // .finally(() => {
 //     profileEditButton.textContent = "Сохранить";
 // });
-// }

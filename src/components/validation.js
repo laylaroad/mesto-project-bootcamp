@@ -15,14 +15,6 @@ function hideError(input, settings) {
     input.classList.remove(settings.invalidTextClass);
 }
 
-//ф-ция сброса валидации
-function resetValidation(formElement, settings) {
-    formElement.reset();
-    const inputList = formElement.querySelectorAll(settings.inputSelector);
-    inputList.forEach((input) => {
-        hideError(input, settings);
-    });
-}
 
 function checkField(input, settings) {
     const errorText = input.validationMessage;
@@ -67,4 +59,4 @@ function enableValidation(settings) {
         setEventListeners(formElement, settings));
 }
 
-export { resetValidation, enableValidation };
+export { enableValidation };
