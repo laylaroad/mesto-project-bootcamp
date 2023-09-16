@@ -25,10 +25,12 @@ function createCard(cardName, cardLink) {
     cardImage.addEventListener('click', function () {
         openPopup(cardPopup);
     })
-
-    document.querySelector('.cards').prepend(cardElement);
+    addCardElement(cardElement);
     return cardElement;
 }
 
+function addCardElement(cardElement) {
+    document.querySelector('.cards').prepend(cardElement);
+}
 
-export { createCard };
+export { createCard, addCardElement };
