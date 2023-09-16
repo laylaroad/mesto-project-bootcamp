@@ -1,6 +1,6 @@
 .card__like-amount {
   text-align: center;
-  color: black;
+  color: rgba(0, 0, 0, 1);
   font-family: "Inter";
   font-size: 13px;
   font-style: normal;

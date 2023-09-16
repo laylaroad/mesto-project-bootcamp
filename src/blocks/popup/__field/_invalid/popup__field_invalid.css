@@ -1,3 +1,6 @@
 .popup__field_invalid {
+  box-sizing: border-box;
   border-color: #ff3333;
+  padding-top: 5px;
+  display: block;
 }
