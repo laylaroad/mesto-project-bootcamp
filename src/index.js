@@ -7,8 +7,6 @@ import { createCard } from "./components/card.js";
 
 import { handleClickOnOverlay, closePopup, openPopup } from "./components/modal.js";
 
-let userId;
-
 const initialCards = [
     {
         name: 'Архыз',
@@ -39,8 +37,9 @@ const initialCards = [
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 
-const closePopupButton = document.querySelector('.popup__close');
-const closePopupNewPlaceButton = document.querySelector('#add-new-place-close-button');
+const closePopupButtons = document.querySelectorAll('.popup__close');
+const closePopupNewPlaceButton = document.getElementById('add-new-place-close-button');
+const closePopupEditButton = document.getElementById('edit-profile-close-button');
 
 const editPopup = document.getElementById('edit-profile-window');
 const newItemPopup = document.getElementById('add-new-place-window');
@@ -59,8 +58,8 @@ const placeLink = document.querySelector('#url');
 const editProfileForm = document.querySelector('#popup-edit-profile');
 const profileText = document.querySelector('.profile__text');
 
-const addNewAvatarPopup = document.querySelector('.profile__avatar_edit');
-const addAvatarIcon = document.getElementById('change-avatar-icon');
+const addNewAvatarPopup = document.getElementById('new-avatar');
+const addAvatarIcon = document.querySelector('.profile__avatar_edit');
 const submitAvatarButton = document.getElementById('save-new-avatar');
 // const editProfileSubmitButton = document.querySelector('#edit-profile-button');
 
@@ -73,6 +72,8 @@ const validationSettings = {
     invalidTextClass: "popup__field_invalid",
     inputSelector: ".popup__field",
 };
+
+let userId;
 
 setupCards();
 
@@ -94,14 +95,12 @@ profileEditButton.addEventListener('click', function () {
     openPopup(editPopup);
 });
 
-
-closePopupButton.addEventListener('click', function () {
+closePopupEditButton.addEventListener('click', function () {
     closePopup(editPopup);
 })
 
 profileAddButton.addEventListener('click', function () {
     openPopup(newItemPopup);
-
 })
 
 closePopupNewPlaceButton.addEventListener('click', function () {
@@ -112,12 +111,18 @@ cardPopupCloseButton.addEventListener('click', function () {
     closePopup(cardPopup);
 })
 
+closePopupButtons.forEach((button) =>
+    button.addEventListener('click', (evt) => {
+        const popupClosest = evt.target.closest('.popup');
+        closePopup(popupClosest);
+        console.log(popupClosest);
+    })
+);
+
 function changeAvatar() {
     openPopup(addNewAvatarPopup);
 }
-
 addAvatarIcon.addEventListener('click', changeAvatar);
-
 
 function setupCards() {
     initialCards.forEach(({ name, link }) => {
@@ -127,15 +132,12 @@ function setupCards() {
     });
 }
 
-
 export function openFullCard(cardLink, cardName) {
     openPopup(cardPopup);
     fullImage.src = cardLink;
     fullImage.alt = cardName;
     fullCaption.textContent = cardName;
-    closePopup(cardPopup);
 };
-
 
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();

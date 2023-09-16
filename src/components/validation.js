@@ -1,5 +1,3 @@
-//FORM VALIDITY
-//переменные валидации форм
 
 function showError(input, errorText, settings) {
     const errorId = `error-${input.id}`;
@@ -14,7 +12,6 @@ function hideError(input, settings) {
     errorElement.textContent = '';
     input.classList.remove(settings.invalidTextClass);
 }
-
 
 function checkField(input, settings) {
     const errorText = input.validationMessage;

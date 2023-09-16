@@ -6,13 +6,16 @@ function handleClickOnOverlay(popup, evt) {
     }
 }
 
+function closeByEsc(evt) {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup);
+    }
+}
+
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown', function (evt) {
-        if (evt.key === 'Escape') {
-            closePopup(popup);
-        }
-    });
+    document.addEventListener('keydown', closeByEsc);
     document.addEventListener('mousedown', function (evt) {
         handleClickOnOverlay(popup, evt);
     });
@@ -21,11 +24,7 @@ function openPopup(popup) {
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', function (evt) {
-        if (evt.key === 'Escape') {
-            closePopup(popup);
-        }
-    });
+    document.removeEventListener('keydown', closeByEsc);
     document.removeEventListener('mousedown', function (evt) {
         handleClickOnOverlay(popup, evt);
     });
