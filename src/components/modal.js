@@ -30,4 +30,4 @@ function closePopup(popup) {
     });
 }
 
-export { handleClickOnOverlay, openPopup, closePopup };
+export { openPopup, closePopup };

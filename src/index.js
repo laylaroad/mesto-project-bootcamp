@@ -5,7 +5,7 @@ import { enableValidation } from "./components/validation.js";
 
 import { createCard } from "./components/card.js";
 
-import { handleClickOnOverlay, closePopup, openPopup } from "./components/modal.js";
+import { closePopup, openPopup } from "./components/modal.js";
 
 const initialCards = [
     {
@@ -45,8 +45,6 @@ const editPopup = document.getElementById('edit-profile-window');
 const newItemPopup = document.getElementById('add-new-place-window');
 
 export const cardsElements = document.querySelector('.cards');
-// const addNewPlaceSubmitButton = document.getElementById('new-place-save-button');
-
 export const cardPopup = document.getElementById('full-card');
 export const cardPopupCloseButton = document.getElementById('card-full-close-button');
 const fullImage = cardPopup.querySelector('.full-card__image');
@@ -60,8 +58,6 @@ const profileText = document.querySelector('.profile__text');
 
 const addNewAvatarPopup = document.getElementById('new-avatar');
 const addAvatarIcon = document.querySelector('.profile__avatar_edit');
-const submitAvatarButton = document.getElementById('save-new-avatar');
-// const editProfileSubmitButton = document.querySelector('#edit-profile-button');
 
 const nameInput = document.querySelector('#name');
 const jobInput = document.querySelector('#job');
@@ -77,19 +73,6 @@ let userId;
 
 setupCards();
 
-// Promise.all([], [])
-// .then ([data, cards]) => {
-//     profileName.textContent = data.name;
-//     profileJob.textContent = data.about;
-//     userId.data._id;
-//     cards.forEach((card) => {
-//         const newCard = createCard(card);
-//         elements.Container.append(newCard);
-//     });
-// })
-// .catch((error) => {
-//     console.error('Error profile info', error);
-// });
 
 profileEditButton.addEventListener('click', function () {
     openPopup(editPopup);
@@ -111,6 +94,7 @@ cardPopupCloseButton.addEventListener('click', function () {
     closePopup(cardPopup);
 })
 
+//вместо forEach можно попробовать найти ближайшую кнопку закрытия от родительского элемента
 closePopupButtons.forEach((button) =>
     button.addEventListener('click', (evt) => {
         const popupClosest = evt.target.closest('.popup');
@@ -149,28 +133,16 @@ function handleNewPlaceFormSubmit(event) {
 }
 newItemPopup.addEventListener('submit', handleNewPlaceFormSubmit);
 
+const profileTitle = profileText.querySelector('.profile__title');
+const profileJob = profileText.querySelector('.profile__subtitle');
+
 function handleEditProfileFormSubmit(event) {
     event.preventDefault();
-    profileText.querySelector('.profile__title').textContent = nameInput.value;
-    profileText.querySelector('.profile__subtitle').textContent = jobInput.value;
-    // profileEditButton.textContent = "Сохранение...";
+    profileTitle.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
     closePopup(editPopup);
 }
 enableValidation(validationSettings);
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 
 
-//часть функции, которая добавляет инфу на страницу; добавить после кнопки с сохранением
-// changeUserProfile(nameValue, jobValue)
-// .then((res) => {
-//     console.log('Информация добавлена!');
-//     profileName.textContent = res.name;
-//     profileJob.textContent = res.about;
-//     closePopup(editPopup);
-// })
-// .catch((error) => {
-//     console.error('Что-то не так!', error);
-// })
-// .finally(() => {
-//     profileEditButton.textContent = "Сохранить";
-// });
