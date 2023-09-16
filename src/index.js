@@ -7,57 +7,6 @@ import { createCard } from "./components/card.js";
 
 import { handleClickOnOverlay, closePopup, openPopup } from "./components/modal.js";
 
-// теперь картинки можно импортировать,
-// вебпак добавит в переменные правильные пути
-import addButtonImage from './images/add-button.svg';
-import avatarImage from './images/avatar.svg';
-import closeButtonImage from './images/close-button.svg';
-import editButtonImage from './images/edit-button.svg';
-import likeActiveButtonImage from './images/like-active.svg';
-import likeDisabledImage from './images/like-disabled.svg';
-import logoImage from './images/logo.svg';
-import trashImage from './images/trash.svg';
-import changeAvatarPencilImage from './images/avatar-pencil.svg';
-
-import InterBlackEot from './fonts/Inter-Black.eot';
-import InterBlackTtf from './fonts/Inter-Black.ttf';
-import InterBlackWoff from './fonts/Inter-Black.woff';
-import InterBlackWoffTwo from './fonts/Inter-Black.woff2';
-import InterBoldEot from './fonts/Inter-Bold.eot';
-import InterBoldTtf from './fonts/Inter-Bold.ttf';
-import InterBoldWoff from './fonts/Inter-Bold.woff';
-import InterBoldWoffTwo from './fonts/Inter-Bold.woff2';
-import InterRegularEot from './fonts/Inter-Regular.eot';
-import InterRegularTtf from './fonts/Inter-Regular.ttf';
-import InterRegularWoff from './fonts/Inter-Black.woff';
-import InterRegularWoffTwo from './fonts/Inter-Regular.woff2';
-
-const whoIsTheGoat = [
-    // меняем исходные пути на переменные
-    { name: 'Add Button Image', image: addButtonImage },
-    { name: 'Avatar Image', image: avatarImage },
-    { name: 'Close Button Image', image: closeButtonImage },
-    { name: 'Edit Button Image', image: editButtonImage },
-    { name: 'Like Active Button Image', image: likeActiveButtonImage },
-    { name: 'Like Disabled Image', image: likeDisabledImage },
-    { name: 'Trash Image', image: trashImage },
-    { name: 'Avatar Change Pencil Image', image: changeAvatarPencilImage },
-    { name: 'Logo Image', image: logoImage },
-
-    { name: 'Inter Black Eot', link: InterBlackEot },
-    { name: 'Inter Black Ttf', link: InterBlackTtf },
-    { name: 'Inter Black Woff', link: InterBlackWoff },
-    { name: 'Inter Black WoffTwo', link: InterBlackWoffTwo },
-    { name: 'Inter Bold Eot', link: InterBoldEot },
-    { name: 'Inter Bold Ttf', link: InterBoldTtf },
-    { name: 'Inter Bold Woff', link: InterBoldWoff },
-    { name: 'Inter Bold Woff Two', link: InterBoldWoffTwo },
-    { name: 'Inter Regular Eot', link: InterRegularEot },
-    { name: 'Inter Regular Ttf', link: InterRegularTtf },
-    { name: 'Inter Regular Woff', link: InterRegularWoff },
-    { name: 'Inter Regular Woff Two', link: InterRegularWoffTwo },
-];
-
 let userId;
 
 const initialCards = [
@@ -109,7 +58,7 @@ const placeLink = document.querySelector('#url');
 const editProfileForm = document.querySelector('#popup-edit-profile');
 const profileText = document.querySelector('.profile__text');
 
-const addNewAvatarPopup = document.getElementById('new-avatar');
+const addNewAvatarPopup = document.querySelector('.profile__avatar_edit');
 const addAvatarIcon = document.getElementById('change-avatar-icon');
 const submitAvatarButton = document.getElementById('save-new-avatar');
 // const editProfileSubmitButton = document.querySelector('#edit-profile-button');
@@ -192,7 +141,7 @@ function handleEditProfileFormSubmit(event) {
     profileText.querySelector('.profile__title').textContent = nameInput.value;
     profileText.querySelector('.profile__subtitle').textContent = jobInput.value;
     resetValidation(editProfileForm, validationSettings);
-    profileEditButton.textContent = "Сохранение...";
+    // profileEditButton.textContent = "Сохранение...";
     closePopup(editPopup);
 }
 enableValidation(validationSettings);

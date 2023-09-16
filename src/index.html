@@ -17,12 +17,16 @@
     <main class="content page__container">
         <section class="profile">
             <div class="profile__wrapper">
+
+                <div class="profile__avatar_edit">
+                    <img class="profile__avatar" src="<%=require('./images/avatar.svg')%>" alt="Аватар пользователя"
+                        id="change-avatar-icon">
+                </div>
+
                 <div class="profile__info">
                     <div class="profile__text">
-                        <img class="profile__avatar" src="<%=require('./images/avatar.svg')%>" alt="Аватар пользователя"
-                            id="change-avatar-icon">
-                        <h1 class=" profile__title" value="">Жак-Ив Кусто</h1>
-                        <p class="profile__subtitle" value="">Исследователь океана</p>
+                        <h1 class=" profile__title" value="Жак-Ив Кусто">Жак-Ив Кусто</h1>
+                        <p class="profile__subtitle" value="Исследователь океана">Исследователь океана</p>
                     </div>
                     <button type="button" class="profile__edit-button">
                     </button>
