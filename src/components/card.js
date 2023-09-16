@@ -1,9 +1,10 @@
-import { openFullCard, cardPopup, cardPopupCloseButton } from "../index.js";
+import { openFullCard, cardPopup } from "../index.js";
 
-import { openPopup, closePopup } from "./modal.js";
+import { openPopup } from "./modal.js";
+
+const cardTemplate = document.querySelector('#card-template').content;
 
 function createCard(cardName, cardLink) {
-    const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
     const cardTitle = cardElement.querySelector('.card__title');
@@ -23,10 +24,6 @@ function createCard(cardName, cardLink) {
     })
     cardImage.addEventListener('click', function () {
         openPopup(cardPopup);
-    })
-
-    cardPopupCloseButton.addEventListener('click', function () {
-        closePopup(cardPopup);
     })
 
     document.querySelector('.cards').prepend(cardElement);

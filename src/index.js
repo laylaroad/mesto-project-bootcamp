@@ -108,6 +108,10 @@ closePopupNewPlaceButton.addEventListener('click', function () {
     closePopup(newItemPopup);
 })
 
+cardPopupCloseButton.addEventListener('click', function () {
+    closePopup(cardPopup);
+})
+
 function changeAvatar() {
     openPopup(addNewAvatarPopup);
 }
