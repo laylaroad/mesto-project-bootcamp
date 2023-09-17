@@ -55,6 +55,8 @@ const placeLink = document.querySelector('#url');
 
 const editProfileForm = document.querySelector('#popup-edit-profile');
 const profileText = document.querySelector('.profile__text');
+const profileTitle = profileText.querySelector('.profile__title');
+const profileJob = profileText.querySelector('.profile__subtitle');
 
 const addNewAvatarPopup = document.getElementById('new-avatar');
 const addAvatarIcon = document.querySelector('.profile__avatar_edit');
@@ -69,7 +71,7 @@ const validationSettings = {
     inputSelector: ".popup__field",
 };
 
-let userId;
+// let userId;
 
 setupCards();
 
@@ -132,9 +134,6 @@ function handleNewPlaceFormSubmit(event) {
     placeLink.value = '';
 }
 newItemPopup.addEventListener('submit', handleNewPlaceFormSubmit);
-
-const profileTitle = profileText.querySelector('.profile__title');
-const profileJob = profileText.querySelector('.profile__subtitle');
 
 function handleEditProfileFormSubmit(event) {
     event.preventDefault();
