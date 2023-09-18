@@ -1,5 +1,5 @@
 import { openFullCard, cardPopup, cardsElements } from "../index.js";
-import { addLike, deleteLike } from "./api.js";
+import { addLike, addNewCard, deleteLike } from "./api.js";
 
 import { openPopup } from "./modal.js";
 
@@ -24,7 +24,6 @@ function createCard(cardName, cardLink) {
     deleteButton.addEventListener('click', () => {
         cardElement.remove();
     });
-
 
     cardImage.addEventListener('click', () => {
         openFullCard(cardLink, cardName);

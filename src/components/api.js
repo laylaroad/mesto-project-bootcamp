@@ -36,7 +36,7 @@ function getInitialCards() {
 }
 
 //редактирование профиля
-function editProfile(profileData) {
+function editProfile(name, about) {
     return fetch(`${config.baseUrl}/users/me`, {
         method: 'PATCH',
         headers: {
@@ -44,8 +44,8 @@ function editProfile(profileData) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name: profileData.name,
-            about: profileData.about
+            name: name,
+            about: about
         })
     })
         .then(res => {
@@ -104,12 +104,12 @@ function newAvatar(link) {
 }
 
 //добавляем свою карточку
-function addNewCard(newCard) {
+function addNewCard(name, link) {
     return fetch(`${config.baseUrl}/cards`, {
         method: 'POST',
         body: JSON.stringify({
-            name: newCard.name,
-            link: newCard.link,
+            name: name,
+            link: link,
         }),
         headers: config.headers
     })

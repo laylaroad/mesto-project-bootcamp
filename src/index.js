@@ -48,7 +48,7 @@ const closePopupNewPlaceButton = document.getElementById('add-new-place-close-bu
 const closePopupEditButton = document.getElementById('edit-profile-close-button');
 
 const editPopup = document.getElementById('edit-profile-window');
-const newItemPopup = document.getElementById('add-new-place-window');
+const newCardPopup = document.getElementById('add-new-place-window');
 
 //card popup
 export const cardsElements = document.querySelector('.cards');
@@ -58,8 +58,8 @@ const fullImage = cardPopup.querySelector('.full-card__image');
 const fullCaption = cardPopup.querySelector('.full-card__caption');
 
 //inputs of new card popup
-const placeName = document.querySelector('#place');
-const placeLink = document.querySelector('#url');
+const cardName = document.querySelector('#place');
+const cardLink = document.querySelector('#url');
 
 //profile info
 const editProfileForm = document.querySelector('#popup-edit-profile');
@@ -85,9 +85,6 @@ const validationSettings = {
 
 let userId;
 
-setupCards();
-
-
 profileEditButton.addEventListener('click', function () {
     openPopup(editPopup);
 });
@@ -97,11 +94,11 @@ closePopupEditButton.addEventListener('click', function () {
 })
 
 profileAddButton.addEventListener('click', function () {
-    openPopup(newItemPopup);
+    openPopup(newCardPopup);
 })
 
 closePopupNewPlaceButton.addEventListener('click', function () {
-    closePopup(newItemPopup);
+    closePopup(newCardPopup);
 })
 
 cardPopupCloseButton.addEventListener('click', function () {
@@ -124,15 +121,6 @@ function changeAvatar() {
 }
 addAvatarIcon.addEventListener('click', changeAvatar);
 
-//переписать
-export function setupCards() {
-    initialCards.forEach(({ name, link }) => {
-        const newCard = createCard(name, link);
-        createCard(name, link);
-        cardsElements.append(newCard);
-    });
-}
-
 export function openFullCard(cardLink, cardName) {
     openPopup(cardPopup);
     fullImage.src = cardLink;
@@ -142,22 +130,72 @@ export function openFullCard(cardLink, cardName) {
 
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
-    const addCard = createCard(placeName.value, placeLink.value);
+    const addCard = createCard(cardName.value, cardLink.value);
     cardsElements.prepend(addCard);
-    closePopup(newItemPopup);
-    placeName.value = '';
-    placeLink.value = '';
+    closePopup(newCardPopup);
+    cardName.value = '';
+    cardLink.value = '';
 }
-newItemPopup.addEventListener('submit', handleNewPlaceFormSubmit);
+// function submitAddCard(evt) {
+//     const makeRequest = () => {
+//         addNewCard({
+//             name: cardName.value,
+//             link: cardLink.value
+//         })
+//             .then((res) => {
+//                 const card = createCard(cardElement, cardTemplate);
+//                 addCardElement(cardsElements, card, 'prepend');
+//             });
+//     }
+// }
+// submitAddCard(cardElement);
+
+newCardPopup.addEventListener('submit', handleNewPlaceFormSubmit);
 
 function handleEditProfileFormSubmit(event) {
     event.preventDefault();
     profileTitle.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
+    editProfile(nameInput.value, jobInput.value);
     closePopup(editPopup);
 }
 enableValidation(validationSettings);
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
+
+
+// //функция проверки кнопки
+// function renderingSubmit(button, buttonText = "Сохранить", loadingText = "Сохранение...", isLoading) {
+//     if (isLoading) {
+//         button.textContent = loadingText;
+//     } else {
+//         button.textContent = buttonText;
+//     }
+// }
+
+// //прописываем функцию отправки формы с "сохранением" на кнопке
+// function handleSubmit(evt, isInput) {
+//     evt.preventDefault();
+//     const defaultSubmitButton = evt.submit;
+//     const defaultText = defaultSubmitButton.textContent;
+//     renderingSubmit(true, defaultText, defaultSubmitButton, loadingText);
+//     fetch(url, options), {
+//         .then((res) => {
+//         if (res.ok) {
+//             return res.json();
+//         }
+//         return Promise.reject(err.message);
+//     },
+//     .then(() => {
+//         isInput && evt.target.reset();
+//         closePopup(evt.target.closest('.popup'))
+//     })
+//             .catch(console.error),
+//     }
+//         .finally(() => {
+//             renderingSubmit(false, defaultText, loadingText, defaultSubmitButton);
+//         })
+// }
+
 
 Promise.all([getDataProfile(), getInitialCards()])
     .then(([profileData, cardsElements]) => {
@@ -167,8 +205,7 @@ Promise.all([getDataProfile(), getInitialCards()])
         userId = profileData._id;
 
         cardsElements.forEach((cardElement => {
-            const newCard = createCard(cardElement.name, cardElement.link);
-            console.log(cardElement);
+            createCard(cardElement.name, cardElement.link);
         }))
     })
     .catch(console.error);
