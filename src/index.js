@@ -3,7 +3,7 @@ import './pages/index.css';
 
 import { enableValidation } from "./components/validation.js";
 
-import { createCard, addCardElement } from "./components/card.js";
+import { createCard, addCardElement, cardElement } from "./components/card.js";
 
 import { closePopup, openPopup } from "./components/modal.js";
 
@@ -159,16 +159,17 @@ function handleEditProfileFormSubmit(event) {
 enableValidation(validationSettings);
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 
-// Promise.all([getDataProfile(), getInitialCards()])
-Promise.all([getDataProfile()])
-    .then(([profileData]) => {
+Promise.all([getDataProfile(), getInitialCards()])
+    .then(([profileData, cardsElements]) => {
+
         profileTitle.textContent = profileData.name;
         profileJob.textContent = profileData.about;
         userId = profileData._id;
-        cardsElements.forEach(initialCards => {
-            const newCard = createCard(initialCards.el);
+
+        cardsElements.forEach((cardElement => {
+            const newCard = createCard(cardElement);
             addCardElement(newCard);
-            console.log(newCard);
-        })
+            console.log(cardElement);
+        }))
     })
     .catch(console.error);

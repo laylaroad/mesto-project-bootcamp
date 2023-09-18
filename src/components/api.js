@@ -1,4 +1,3 @@
-import { initialCards, setupCards } from "../index.js";
 
 //делаем запрос к серверу
 const config = {
@@ -10,9 +9,8 @@ const config = {
 };
 
 //загрузка данных профиля с сервера
-async function getDataProfile() {
+function getDataProfile() {
     return fetch(`${config.baseUrl}/users/me`, {
-        method: 'GET',
         headers: config.headers
     })
         .then(res => {
@@ -25,22 +23,20 @@ async function getDataProfile() {
 
 
 //делаем запрос других карточек
-async function getInitialCards() {
+function getInitialCards() {
     return fetch(`${config.baseUrl}/cards`, {
-        method: 'GET',
         headers: config.headers
     })
         .then(res => {
             if (res.ok) {
                 return res.json();
             }
-            setupCards(initialCards);
             return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        })
 }
 
 //редактирование профиля
-async function editProfile(profileData) {
+function editProfile(profileData) {
     return fetch(`${config.baseUrl}/users/me`, {
         method: 'PATCH',
         headers: {
@@ -61,7 +57,7 @@ async function editProfile(profileData) {
 }
 
 //ставим лайк
-async function addLike(cardId) {
+function addLike(cardId) {
     return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
         method: 'PUT',
         headers: config.headers
@@ -76,7 +72,7 @@ async function addLike(cardId) {
 };
 
 //удаляем лайк
-async function deleteLike(cardId) {
+function deleteLike(cardId) {
     return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
         method: 'DELETE',
         headers: config.headers
@@ -90,7 +86,7 @@ async function deleteLike(cardId) {
 }
 
 //меняем аватар
-async function newAvatar(link) {
+function newAvatar(link) {
     return fetch(`${config.baseUrl}/users/me/avatar`, {
         method: 'PATCH',
         headers: config.headers,
@@ -108,7 +104,7 @@ async function newAvatar(link) {
 }
 
 //добавляем свою карточку
-async function addNewCard(newCard) {
+function addNewCard(newCard) {
     return fetch(`${config.baseUrl}/cards`, {
         method: 'POST',
         body: JSON.stringify({
@@ -126,7 +122,7 @@ async function addNewCard(newCard) {
 }
 
 //удаляем свою карточку
-async function deleteCard(cardId) {
+function deleteCard(cardId) {
     return fetch(`${config.baseUrl}/cards/${cardId}`, {
         method: 'DELETE',
         headers: config.headers
