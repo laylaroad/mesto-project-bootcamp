@@ -2,16 +2,15 @@
 //делаем запрос к серверу
 const config = {
     baseUrl: 'https://nomoreparties.co/v1/wbf-cohort-12',
-    headers: {
-        authorization: '5970e7b5-fad8-4b45-bc23-ee4a5f3f9441',
-        'Content-type': 'application.json'
-    }
+    authorization: '5970e7b5-fad8-4b45-bc23-ee4a5f3f9441'
 };
 
 //загрузка данных профиля с сервера
 function getDataProfile() {
     return fetch(`${config.baseUrl}/users/me`, {
-        headers: config.headers
+        headers: {
+            authorization: config.authorization
+        }
     })
         .then(res => {
             if (res.ok) {
@@ -25,7 +24,9 @@ function getDataProfile() {
 //делаем запрос других карточек
 function getInitialCards() {
     return fetch(`${config.baseUrl}/cards`, {
-        headers: config.headers
+        headers: {
+            authorization: config.authorization
+        }
     })
         .then(res => {
             if (res.ok) {
@@ -40,7 +41,7 @@ function editProfile(name, about) {
     return fetch(`${config.baseUrl}/users/me`, {
         method: 'PATCH',
         headers: {
-            authorization: ' 5970e7b5-fad8-4b45-bc23-ee4a5f3f9441',
+            authorization: config.authorization,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -60,7 +61,9 @@ function editProfile(name, about) {
 function addLike(cardId) {
     return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
         method: 'PUT',
-        headers: config.headers
+        headers: {
+            authorization: config.authorization
+        }
     })
         .then(res => {
             if (res.ok) {
@@ -75,7 +78,9 @@ function addLike(cardId) {
 function deleteLike(cardId) {
     return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
         method: 'DELETE',
-        headers: config.headers
+        headers: {
+            authorization: config.authorization
+        }
     })
         .then(res => {
             if (res.ok) {
@@ -89,7 +94,10 @@ function deleteLike(cardId) {
 function newAvatar(link) {
     return fetch(`${config.baseUrl}/users/me/avatar`, {
         method: 'PATCH',
-        headers: config.headers,
+        headers: {
+            authorization: config.authorization,
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             avatar:
                 link
@@ -107,11 +115,14 @@ function newAvatar(link) {
 function addNewCard(name, link) {
     return fetch(`${config.baseUrl}/cards`, {
         method: 'POST',
+        headers: {
+            authorization: config.authorization,
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             name: name,
-            link: link,
-        }),
-        headers: config.headers
+            link: link
+        })
     })
         .then(res => {
             if (res.ok) {
@@ -125,7 +136,9 @@ function addNewCard(name, link) {
 function deleteCard(cardId) {
     return fetch(`${config.baseUrl}/cards/${cardId}`, {
         method: 'DELETE',
-        headers: config.headers
+        headers: {
+            authorization: config.authorization
+        }
     })
         .then(res => {
             if (res.ok) {

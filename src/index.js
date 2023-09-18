@@ -9,33 +9,6 @@ import { closePopup, openPopup } from "./components/modal.js";
 
 import { getDataProfile, getInitialCards, editProfile, addLike, deleteLike, newAvatar, addNewCard, deleteCard } from "./components/api.js";
 
-// const initialCards = [
-//     {
-//         name: 'Архыз',
-//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-//     },
-//     {
-//         name: 'Челябинская область',
-//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-//     },
-//     {
-//         name: 'Иваново',
-//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-//     },
-//     {
-//         name: 'Камчатка',
-//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-//     },
-//     {
-//         name: 'Холмогорский район',
-//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-//     },
-//     {
-//         name: 'Байкал',
-//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-//     }
-// ]
-
 //buttons of popups edit/add
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -83,7 +56,8 @@ const validationSettings = {
     inputSelector: ".popup__field",
 };
 
-let userId;
+let userId = "";
+
 
 profileEditButton.addEventListener('click', function () {
     openPopup(editPopup);
@@ -131,6 +105,7 @@ export function openFullCard(cardLink, cardName) {
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
     const addCard = createCard(cardName.value, cardLink.value);
+    addNewCard(cardName.value, cardLink.value);
     cardsElements.prepend(addCard);
     closePopup(newCardPopup);
     cardName.value = '';
@@ -161,6 +136,19 @@ function handleEditProfileFormSubmit(event) {
 }
 enableValidation(validationSettings);
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
+
+Promise.all([getDataProfile(), getInitialCards()])
+    .then(([profileData, cardsElements]) => {
+
+        profileTitle.textContent = profileData.name;
+        profileJob.textContent = profileData.about;
+        userId = profileData._id;
+
+        cardsElements.forEach((cardElement => {
+            createCard(cardElement.name, cardElement.link);
+        }))
+    })
+    .catch(console.error);
 
 
 // //функция проверки кнопки
@@ -197,15 +185,3 @@ editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 // }
 
 
-Promise.all([getDataProfile(), getInitialCards()])
-    .then(([profileData, cardsElements]) => {
-
-        profileTitle.textContent = profileData.name;
-        profileJob.textContent = profileData.about;
-        userId = profileData._id;
-
-        cardsElements.forEach((cardElement => {
-            createCard(cardElement.name, cardElement.link);
-        }))
-    })
-    .catch(console.error);
