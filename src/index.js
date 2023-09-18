@@ -167,8 +167,7 @@ Promise.all([getDataProfile(), getInitialCards()])
         userId = profileData._id;
 
         cardsElements.forEach((cardElement => {
-            const newCard = createCard(cardElement);
-            addCardElement(newCard);
+            const newCard = createCard(cardElement.name, cardElement.link);
             console.log(cardElement);
         }))
     })
