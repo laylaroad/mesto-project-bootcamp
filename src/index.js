@@ -104,7 +104,7 @@ export function openFullCard(cardLink, cardName) {
 
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
-    const addCard = createCard(cardName.value, cardLink.value);
+    const addCard = createCard(cardName.value, cardLink.value, cardLikeCount);
     addNewCard(cardName.value, cardLink.value);
     cardsElements.prepend(addCard);
     closePopup(newCardPopup);
@@ -145,7 +145,7 @@ Promise.all([getDataProfile(), getInitialCards()])
         userId = profileData._id;
 
         cardsElements.forEach((cardElement => {
-            createCard(cardElement.name, cardElement.link);
+            createCard(cardElement.name, cardElement.link, cardElement.likes.length);
         }))
     })
     .catch(console.error);

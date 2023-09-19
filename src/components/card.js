@@ -5,7 +5,7 @@ import { openPopup } from "./modal.js";
 
 const cardTemplate = document.querySelector('#card-template').content;
 
-function createCard(cardName, cardLink) {
+function createCard(cardName, cardLink, cardLikeCount) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
     const cardTitle = cardElement.querySelector('.card__title');
@@ -16,6 +16,7 @@ function createCard(cardName, cardLink) {
     cardImage.src = cardLink;
     cardImage.alt = cardName;
     cardTitle.textContent = cardName;
+    likeCounter.textContent = cardLikeCount;
 
     likeButton.addEventListener('click', () => {
         likeButton.classList.toggle('card__like_active');
