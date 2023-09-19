@@ -145,7 +145,7 @@ Promise.all([getDataProfile(), getInitialCards()])
         userId = profileData._id;
 
         cardsElements.forEach((cardElement => {
-            createCard(cardElement.name, cardElement.link, cardElement.likes.length);
+            createCard(cardElement.name, cardElement.link, cardElement.likes.length, cardElement._id);
         }))
     })
     .catch(console.error);

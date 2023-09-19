@@ -5,7 +5,7 @@ import { openPopup } from "./modal.js";
 
 const cardTemplate = document.querySelector('#card-template').content;
 
-function createCard(cardName, cardLink, cardLikeCount) {
+function createCard(cardName, cardLink, cardLikeCount, cardId) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
     const cardTitle = cardElement.querySelector('.card__title');
@@ -18,13 +18,36 @@ function createCard(cardName, cardLink, cardLikeCount) {
     cardTitle.textContent = cardName;
     likeCounter.textContent = cardLikeCount;
 
+    const handleLikeAmount = (likeButton, cardLikeCount, cardId) => {
+        addLike(cardId)
+            .then((res) => {
+                likeButton.classList.add('card__like_active');
+                cardLikeCount = res.likes.length;
+            })
+            .catch(console.error);
+    }
+
+    const handleLikeDelete = (likeButton, cardLikeCount, cardId) => {
+        deleteLike(cardId)
+            .then((res) => {
+                cardLikeCount = res.likes.length || '';
+                likeButton.classList.remove('card__like_active');
+            })
+            .catch(console.error);
+    }
+    //прописать логику чтобы отображалось что именно я поставила лайк – для этого нужно передать в функцию массив с лайками и прописать условие в котором я спрашиваю содержит ли этот массив мой лайк. это нужно для того чтобы отображалось сердечко когда я ставлю лайк и после перезагрузки страницы
+    // deleteButton.addEventListener('click', () => {
+    //     cardElement.remove();
+    // });
+
     likeButton.addEventListener('click', () => {
-        likeButton.classList.toggle('card__like_active');
+        if (likeButton.classList.contains('card__like_active')) {
+            handleLikeDelete(likeButton, likeCounter, cardId);
+        } else {
+            handleLikeAmount(likeButton, likeCounter, cardId);
+        }
     });
 
-    deleteButton.addEventListener('click', () => {
-        cardElement.remove();
-    });
 
     cardImage.addEventListener('click', () => {
         openFullCard(cardLink, cardName);
@@ -33,6 +56,7 @@ function createCard(cardName, cardLink, cardLikeCount) {
         openPopup(cardPopup);
     })
     addCardElement(cardElement);
+
     return cardElement;
 }
 
@@ -42,33 +66,3 @@ function addCardElement(cardElement) {
 
 export { createCard, addCardElement };
 
-
-
-
-
-
-   // const handleLikeAmount = (likeButton, likeCounter, currentId) => {
-    //     addLike(currentId)
-    //         .then((res) => {
-    //             likeButton.classList.add('card__like_active');
-    //             likeCounter.textContent = res.like.length;
-    //         })
-    //         .catch(console.error);
-    // }
-
-    // likeButton.addEventListener('click', () => {
-    //     if (likeButton.classList.contains('card__like_active')) {
-    //         handleLikeAmount(likeButton, likeCounter, cardElement);
-    //     } else {
-    //         handleLikeDelete(likeButton, likeCounter, cardElement);
-    //     }
-    // })
-
-    // const handleLikeDelete = (likeButton, likeCounter, currentId) => {
-    //     deleteLike(currentId)
-    //         .then((res) => {
-    //             likeCounter.textContent = res.likes.length || '';
-    //             likeButton.classList.remove('card__like_active');
-    //         })
-    //         .catch(console.error);
-    // }

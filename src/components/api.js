@@ -58,8 +58,8 @@ function editProfile(name, about) {
 }
 
 //ставим лайк
-function addLike(cardId) {
-    return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+function addLike(id) {
+    return fetch(`${config.baseUrl}/cards/likes/${id}`, {
         method: 'PUT',
         headers: {
             authorization: config.authorization
@@ -75,8 +75,8 @@ function addLike(cardId) {
 };
 
 //удаляем лайк
-function deleteLike(cardId) {
-    return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+function deleteLike(id) {
+    return fetch(`${config.baseUrl}/cards/likes/${id}`, {
         method: 'DELETE',
         headers: {
             authorization: config.authorization
@@ -133,8 +133,8 @@ function addNewCard(name, link) {
 }
 
 //удаляем свою карточку
-function deleteCard(cardId) {
-    return fetch(`${config.baseUrl}/cards/${cardId}`, {
+function deleteCard(id) {
+    return fetch(`${config.baseUrl}/cards/${id}`, {
         method: 'DELETE',
         headers: {
             authorization: config.authorization
