@@ -3,11 +3,11 @@ import './pages/index.css';
 
 import { enableValidation } from "./components/validation.js";
 
-import { createCard, addCardElement, cardElement } from "./components/card.js";
+import { createCard } from "./components/card.js";
 
 import { closePopup, openPopup } from "./components/modal.js";
 
-import { getDataProfile, getInitialCards, editProfile, addLike, deleteLike, newAvatar, addNewCard, deleteCard } from "./components/api.js";
+import { getDataProfile, getInitialCards, editProfile, newAvatar, addNewCard } from "./components/api.js";
 
 //buttons of popups edit/add
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -47,6 +47,8 @@ const jobInput = document.querySelector('#job');
 //new avatar
 const addNewAvatarPopup = document.getElementById('new-avatar');
 const addAvatarIcon = document.querySelector('.profile__avatar_edit');
+const avatarLinkInput = document.querySelector('#link');
+
 
 
 const validationSettings = {
@@ -56,7 +58,20 @@ const validationSettings = {
     inputSelector: ".popup__field",
 };
 
-let userId = "";
+export let userId = "";
+
+Promise.all([getDataProfile(), getInitialCards()])
+    .then(([profileData, cardsElements]) => {
+        profileTitle.textContent = profileData.name;
+        profileJob.textContent = profileData.about;
+        userId = profileData._id;
+
+        cardsElements.forEach((cardElement => {
+            createCard(cardElement.name, cardElement.link,
+                cardElement.likes.length, cardElement._id, cardElement.owner);
+        }))
+    })
+    .catch(console.error);
 
 
 profileEditButton.addEventListener('click', function () {
@@ -104,26 +119,13 @@ export function openFullCard(cardLink, cardName) {
 
 function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
-    const addCard = createCard(cardName.value, cardLink.value, cardLikeCount);
+    const addCard = createCard(cardName.value, cardLink.value, cardLikeCount, _id, owner);
     addNewCard(cardName.value, cardLink.value);
     cardsElements.prepend(addCard);
     closePopup(newCardPopup);
     cardName.value = '';
     cardLink.value = '';
 }
-// function submitAddCard(evt) {
-//     const makeRequest = () => {
-//         addNewCard({
-//             name: cardName.value,
-//             link: cardLink.value
-//         })
-//             .then((res) => {
-//                 const card = createCard(cardElement, cardTemplate);
-//                 addCardElement(cardsElements, card, 'prepend');
-//             });
-//     }
-// }
-// submitAddCard(cardElement);
 
 newCardPopup.addEventListener('submit', handleNewPlaceFormSubmit);
 
@@ -137,18 +139,14 @@ function handleEditProfileFormSubmit(event) {
 enableValidation(validationSettings);
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 
-Promise.all([getDataProfile(), getInitialCards()])
-    .then(([profileData, cardsElements]) => {
-
-        profileTitle.textContent = profileData.name;
-        profileJob.textContent = profileData.about;
-        userId = profileData._id;
-
-        cardsElements.forEach((cardElement => {
-            createCard(cardElement.name, cardElement.link, cardElement.likes.length, cardElement._id);
-        }))
-    })
-    .catch(console.error);
+function handleNewAvatarSubmit(event) {
+    event.preventDefault();
+    // avatarLinkInput.textContent = link.value;
+    openPopup(addNewAvatarPopup);
+    newAvatar(link);
+    closePopup(addNewAvatarPopup);
+}
+addNewAvatarPopup.addEventListener('submit', handleNewAvatarSubmit);
 
 
 // //функция проверки кнопки
@@ -184,4 +182,16 @@ Promise.all([getDataProfile(), getInitialCards()])
 //         })
 // }
 
-
+// function submitAddCard(evt) {
+//     const makeRequest = () => {
+//         addNewCard({
+//             name: cardName.value,
+//             link: cardLink.value
+//         })
+//             .then((res) => {
+//                 const card = createCard(cardElement, cardTemplate);
+//                 addCardElement(cardsElements, card, 'prepend');
+//             });
+//     }
+// }
+// submitAddCard(cardElement);
