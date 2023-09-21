@@ -1,4 +1,4 @@
-import { openFullCard, cardPopup, cardsElements, userId } from "../index.js";
+import { openFullCard, cardPopup, cardsElements, profileId } from "../index.js";
 import { addLike, deleteCard, deleteLike } from "./api.js";
 
 import { openPopup } from "./modal.js";
@@ -19,15 +19,13 @@ function createCard(cardName, cardLink, cardLikeCount, _id, owner) {
     likeCounter.textContent = cardLikeCount;
 
 
-    if (owner._id !== userId) {
+    if (owner._id !== profileId) {
         deleteButton.remove();
     } else {
-        deleteButton.addEventListener('click', () => {
+        deleteButton.addEventListener('click', (evt) => {
             deleteCard(_id)
-                .then(() => cardElement.remove())
-                .catch(console.error);
-            // const cardClosest = evt.target.closest('.card');
-            // cardClosest._idremove();
+            const cardClosest = evt.target.closest('.card');
+            cardClosest._id.remove();
         }
         );
     }

@@ -57,14 +57,14 @@ const validationSettings = {
     inputSelector: ".popup__field",
 };
 
-export let userId = "";
+export let profileId = "";
 
 Promise.all([getDataProfile(), getInitialCards()])
     .then(([profileData, cardsElements]) => {
         profileTitle.textContent = profileData.name;
         profileJob.textContent = profileData.about;
         profileAvatar.src = profileData.avatar;
-        userId = profileData._id;
+        profileId = profileData._id;
 
         cardsElements.forEach((cardElement => {
             createCard(cardElement.name, cardElement.link,
@@ -156,23 +156,3 @@ function handleSubmitAvatar(event) {
     closePopup(addNewAvatarPopup);
 }
 newAvatarForm.addEventListener('submit', handleSubmitAvatar);
-
-
-// function handleNewAvatarSubmit(event) {
-//     event.preventDefault();
-//     // avatarLinkInput.textContent = link.value;
-//     openPopup(addNewAvatarPopup);
-//     newAvatar(link);
-//     closePopup(addNewAvatarPopup);
-// }
-// addNewAvatarPopup.addEventListener('submit', handleNewAvatarSubmit);
-
-
-// //функция проверки кнопки
-// function renderingSubmit(button, buttonText = "Сохранить", loadingText = "Сохранение...", isLoading) {
-//     if (isLoading) {
-//         button.textContent = loadingText;
-//     } else {
-//         button.textContent = buttonText;
-//     }
-// }
