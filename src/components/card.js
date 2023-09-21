@@ -5,13 +5,15 @@ import { openPopup } from "./modal.js";
 
 const cardTemplate = document.querySelector('#card-template').content;
 
-function createCard(cardName, cardLink, cardLikeCount, _id, owner) {
+function createCard(cardName, cardLink, cardLikes, cardId, owner) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
     const cardTitle = cardElement.querySelector('.card__title');
     const likeButton = cardElement.querySelector('.card__like');
     const likeCounter = cardElement.querySelector('.card__like-amount');
     const deleteButton = cardElement.querySelector('.card__delete');
+
+    const cardLikeCount = cardLikes.length;
 
     cardImage.src = cardLink;
     cardImage.alt = cardName;
@@ -21,38 +23,17 @@ function createCard(cardName, cardLink, cardLikeCount, _id, owner) {
 
     if (owner._id !== profileId) {
         deleteButton.remove();
-    } else {
-        deleteButton.addEventListener('click', (evt) => {
-            deleteCard(_id)
-            const cardClosest = evt.target.closest('.card');
-            cardClosest._id.remove();
-        }
-        );
+    };
+
+    deleteButton.addEventListener('click', () => {
+        deleteCard(cardId)
+            .then(() => cardElement.remove())
+            .catch(() => console.log(err));
+    });
+
+    if (cardLikes.some(({ _id }) => _id === owner._id)) {
+        likeButton.classList.add('card__like_active');
     }
-
-    const handleLikeAmount = (likeButton, cardLikeCount, cardId) => {
-        addLike(cardId)
-            .then((res) => {
-                likeButton.classList.add('card__like_active');
-                cardLikeCount = res.likes.length;
-            })
-            .catch(console.error);
-    }
-
-    const handleLikeDelete = (likeButton, cardLikeCount, cardId) => {
-        deleteLike(cardId)
-            .then((res) => {
-                cardLikeCount = res.likes.length || '';
-                likeButton.classList.remove('card__like_active');
-            })
-            .catch(console.error);
-    }
-
-    //прописать логику чтобы отображалось что именно я поставила лайк 
-    // для этого нужно передать в функцию массив с лайками и прописать условие
-    // в котором я спрашиваю содержит ли этот массив мой лайк. 
-    // это нужно для того чтобы отображалось сердечко когда я ставлю лайк и после перезагрузки страницы
-
 
     likeButton.addEventListener('click', () => {
         if (likeButton.classList.contains('card__like_active')) {
@@ -75,6 +56,24 @@ function createCard(cardName, cardLink, cardLikeCount, _id, owner) {
 
 function addCardElement(cardElement) {
     cardsElements.prepend(cardElement);
+}
+
+const handleLikeAmount = (likeButton, cardLikeCount, cardId) => {
+    addLike(cardId)
+        .then((res) => {
+            likeButton.classList.add('card__like_active');
+            cardLikeCount = res.likes.length;
+        })
+        .catch(console.error);
+}
+
+const handleLikeDelete = (likeButton, cardLikeCount, cardId) => {
+    deleteLike(cardId)
+        .then((res) => {
+            cardLikeCount = res.likes.length;
+            likeButton.classList.remove('card__like_active');
+        })
+        .catch(console.error);
 }
 
 export { createCard, addCardElement };

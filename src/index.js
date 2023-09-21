@@ -68,13 +68,17 @@ Promise.all([getDataProfile(), getInitialCards()])
 
         cardsElements.forEach((cardElement => {
             createCard(cardElement.name, cardElement.link,
-                cardElement.likes.length, cardElement._id, cardElement.owner);
+                cardElement.likes, cardElement._id, cardElement.owner);
         }))
     })
     .catch(console.error);
 
 
 profileEditButton.addEventListener('click', function () {
+    nameInput.value = profileTitle.textContent;
+    jobInput.value = profileJob.textContent;
+    console.log(jobInput.value);
+    console.log(nameInput.value);
     openPopup(editPopup);
 });
 
@@ -118,21 +122,40 @@ export function openFullCard(cardLink, cardName) {
 };
 
 function handleNewPlaceFormSubmit(event) {
+    event.submitter.textContent = "Сохранение...";
     event.preventDefault();
-    const addCard = createCard(cardName.value, cardLink.value, cardLikeCount, _id, owner);
-    addNewCard(cardName.value, cardLink.value);
-    cardsElements.prepend(addCard);
+    addNewCard(cardName.value, cardLink.value)
+        .then((res) => {
+            cardName.value = res.name;
+            cardLink.value = res.link;
+            const addCard = createCard(cardName.value, cardLink.value, 0, res._id, res.owner);
+            cardsElements.prepend(addCard);
+        })
+        .catch(() => {
+            console.error;
+        })
+        .finally(() => {
+            event.submitter.textContent = "Сохранение...";
+        });
     closePopup(newCardPopup);
-    cardName.value = '';
-    cardLink.value = '';
 }
 newCardPopup.addEventListener('submit', handleNewPlaceFormSubmit);
 
+
 function handleEditProfileFormSubmit(event) {
+    event.submitter.textContent = "Сохранение...";
     event.preventDefault();
-    profileTitle.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
-    editProfile(nameInput.value, jobInput.value);
+    editProfile(nameInput.value, jobInput.value)
+        .then((res) => {
+            profileTitle.textContent = res.name;
+            profileJob.textContent = res.about;
+        })
+        .catch(() => {
+            console.error;
+        })
+        .finally(() => {
+            event.submitter.textContent = "Сохранение...";
+        });
     closePopup(editPopup);
 }
 enableValidation(validationSettings);
