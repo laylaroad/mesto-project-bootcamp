@@ -13,8 +13,6 @@ import { getDataProfile, getInitialCards, editProfile, newAvatar, addNewCard } f
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 
-export const initialCards = [];
-
 const closePopupButtons = document.querySelectorAll('.popup__close');
 //close button const should delete
 const closePopupNewPlaceButton = document.getElementById('add-new-place-close-button');
@@ -39,16 +37,17 @@ const editProfileForm = document.querySelector('#popup-edit-profile');
 const profileText = document.querySelector('.profile__text');
 const profileTitle = profileText.querySelector('.profile__title');
 const profileJob = profileText.querySelector('.profile__subtitle');
+const profileAvatar = document.querySelector('.profile__avatar');
 
 //inputs of profile info popup
 const nameInput = document.querySelector('#name');
 const jobInput = document.querySelector('#job');
 
-//new avatar
+//new avatar popup
 const addNewAvatarPopup = document.getElementById('new-avatar');
+const newAvatarForm = document.getElementById('new-avatar-form');
 const addAvatarIcon = document.querySelector('.profile__avatar_edit');
-const avatarLinkInput = document.querySelector('#link');
-
+const avatarLinkInput = document.getElementById('link');
 
 
 const validationSettings = {
@@ -64,6 +63,7 @@ Promise.all([getDataProfile(), getInitialCards()])
     .then(([profileData, cardsElements]) => {
         profileTitle.textContent = profileData.name;
         profileJob.textContent = profileData.about;
+        profileAvatar.src = profileData.avatar;
         userId = profileData._id;
 
         cardsElements.forEach((cardElement => {
@@ -126,7 +126,6 @@ function handleNewPlaceFormSubmit(event) {
     cardName.value = '';
     cardLink.value = '';
 }
-
 newCardPopup.addEventListener('submit', handleNewPlaceFormSubmit);
 
 function handleEditProfileFormSubmit(event) {
@@ -139,14 +138,34 @@ function handleEditProfileFormSubmit(event) {
 enableValidation(validationSettings);
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 
-function handleNewAvatarSubmit(event) {
+
+function handleSubmitAvatar(event) {
+    event.submitter.textContent = "Сохранение...";
     event.preventDefault();
-    // avatarLinkInput.textContent = link.value;
-    openPopup(addNewAvatarPopup);
-    newAvatar(link);
+
+    newAvatar(avatarLinkInput.value)
+        .then((profilaData) => {
+            profileAvatar.src = profilaData.avatar;
+        })
+        .catch(() => {
+            console.error;
+        })
+        .finally(() => {
+            event.submitter.textContent = "Сохранение...";
+        });
     closePopup(addNewAvatarPopup);
 }
-addNewAvatarPopup.addEventListener('submit', handleNewAvatarSubmit);
+newAvatarForm.addEventListener('submit', handleSubmitAvatar);
+
+
+// function handleNewAvatarSubmit(event) {
+//     event.preventDefault();
+//     // avatarLinkInput.textContent = link.value;
+//     openPopup(addNewAvatarPopup);
+//     newAvatar(link);
+//     closePopup(addNewAvatarPopup);
+// }
+// addNewAvatarPopup.addEventListener('submit', handleNewAvatarSubmit);
 
 
 // //функция проверки кнопки
@@ -157,41 +176,3 @@ addNewAvatarPopup.addEventListener('submit', handleNewAvatarSubmit);
 //         button.textContent = buttonText;
 //     }
 // }
-
-// //прописываем функцию отправки формы с "сохранением" на кнопке
-// function handleSubmit(evt, isInput) {
-//     evt.preventDefault();
-//     const defaultSubmitButton = evt.submit;
-//     const defaultText = defaultSubmitButton.textContent;
-//     renderingSubmit(true, defaultText, defaultSubmitButton, loadingText);
-//     fetch(url, options), {
-//         .then((res) => {
-//         if (res.ok) {
-//             return res.json();
-//         }
-//         return Promise.reject(err.message);
-//     },
-//     .then(() => {
-//         isInput && evt.target.reset();
-//         closePopup(evt.target.closest('.popup'))
-//     })
-//             .catch(console.error),
-//     }
-//         .finally(() => {
-//             renderingSubmit(false, defaultText, loadingText, defaultSubmitButton);
-//         })
-// }
-
-// function submitAddCard(evt) {
-//     const makeRequest = () => {
-//         addNewCard({
-//             name: cardName.value,
-//             link: cardLink.value
-//         })
-//             .then((res) => {
-//                 const card = createCard(cardElement, cardTemplate);
-//                 addCardElement(cardsElements, card, 'prepend');
-//             });
-//     }
-// }
-// submitAddCard(cardElement);

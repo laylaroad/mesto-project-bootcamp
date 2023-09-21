@@ -18,7 +18,8 @@ function createCard(cardName, cardLink, cardLikeCount, _id, owner) {
     cardTitle.textContent = cardName;
     likeCounter.textContent = cardLikeCount;
 
-    if (!(owner._id === userId)) {
+
+    if (owner._id !== userId) {
         deleteButton.remove();
     } else {
         deleteButton.addEventListener('click', () => {
@@ -49,7 +50,6 @@ function createCard(cardName, cardLink, cardLikeCount, _id, owner) {
             .catch(console.error);
     }
 
-
     //прописать логику чтобы отображалось что именно я поставила лайк 
     // для этого нужно передать в функцию массив с лайками и прописать условие
     // в котором я спрашиваю содержит ли этот массив мой лайк. 
@@ -58,12 +58,11 @@ function createCard(cardName, cardLink, cardLikeCount, _id, owner) {
 
     likeButton.addEventListener('click', () => {
         if (likeButton.classList.contains('card__like_active')) {
-            handleLikeDelete(likeButton, likeCounter, cardId);
+            handleLikeDelete(likeButton, cardLikeCount, cardId);
         } else {
-            handleLikeAmount(likeButton, likeCounter, cardId);
+            handleLikeAmount(likeButton, cardLikeCount, cardId);
         }
     });
-
 
     cardImage.addEventListener('click', () => {
         openFullCard(cardLink, cardName);
