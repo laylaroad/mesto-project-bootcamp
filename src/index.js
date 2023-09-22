@@ -34,15 +34,15 @@ const cardLink = document.getElementById('url');
 const cardSubmitForm = document.getElementById('popup-add-new-card');
 
 //profile info
-const editProfileForm = document.querySelector('#popup-edit-profile');
+const editProfileForm = document.getElementById('popup-edit-profile');
 const profileText = document.querySelector('.profile__text');
 const profileTitle = profileText.querySelector('.profile__title');
 const profileJob = profileText.querySelector('.profile__subtitle');
 const profileAvatar = document.querySelector('.profile__avatar');
 
 //inputs of profile info popup
-const nameInput = document.querySelector('#name');
-const jobInput = document.querySelector('#job');
+const nameInput = document.getElementById('name');
+const jobInput = document.getElementById('job');
 
 //new avatar popup
 const addNewAvatarPopup = document.getElementById('new-avatar');
