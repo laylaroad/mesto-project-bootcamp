@@ -32,11 +32,17 @@
   }
 }
 
-@media (max-width: 460px) {
+@media (max-width: 480px) {
   .profile__edit-button {
     justify-self: start;
     align-self: start;
     margin-left: 9px;
     margin-top: 37px;
+  }
+}
+
+@media (max-width: 320px) {
+  .profile__edit-button {
+    margin-left: 2px;
   }
 }

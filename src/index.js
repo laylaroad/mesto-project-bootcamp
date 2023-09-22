@@ -29,8 +29,9 @@ const fullImage = cardPopup.querySelector('.full-card__image');
 const fullCaption = cardPopup.querySelector('.full-card__caption');
 
 //inputs of new card popup
-const cardName = document.querySelector('#place');
-const cardLink = document.querySelector('#url');
+const cardName = document.getElementById('place');
+const cardLink = document.getElementById('url');
+const cardSubmitForm = document.getElementById('popup-add-new-card');
 
 //profile info
 const editProfileForm = document.querySelector('#popup-edit-profile');
@@ -77,8 +78,6 @@ Promise.all([getDataProfile(), getInitialCards()])
 profileEditButton.addEventListener('click', function () {
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileJob.textContent;
-    console.log(jobInput.value);
-    console.log(nameInput.value);
     openPopup(editPopup);
 });
 
@@ -98,8 +97,7 @@ cardPopupCloseButton.addEventListener('click', function () {
     closePopup(cardPopup);
 })
 
-//вместо forEach можно попробовать найти 
-//ближайшую кнопку закрытия от родительского элемента
+
 closePopupButtons.forEach((button) =>
     button.addEventListener('click', (evt) => {
         const popupClosest = evt.target.closest('.popup');
@@ -108,7 +106,6 @@ closePopupButtons.forEach((button) =>
     })
 );
 
-//открываем попап изменения аватарки
 function changeAvatar() {
     openPopup(addNewAvatarPopup);
 }
@@ -126,20 +123,23 @@ function handleNewPlaceFormSubmit(event) {
     event.preventDefault();
     addNewCard(cardName.value, cardLink.value)
         .then((res) => {
+            console.log(res);
             cardName.value = res.name;
             cardLink.value = res.link;
-            const addCard = createCard(cardName.value, cardLink.value, 0, res._id, res.owner);
-            cardsElements.prepend(addCard);
+            createCard(cardName.value, cardLink.value, res.likes, res._id, res.owner);
+            cardName.value = '';
+            cardLink.value = '';
         })
         .catch(() => {
             console.error;
         })
         .finally(() => {
-            event.submitter.textContent = "Сохранение...";
+            event.submitter.textContent = "Создать";
         });
     closePopup(newCardPopup);
 }
-newCardPopup.addEventListener('submit', handleNewPlaceFormSubmit);
+
+cardSubmitForm.addEventListener('submit', handleNewPlaceFormSubmit);
 
 
 function handleEditProfileFormSubmit(event) {
@@ -154,7 +154,7 @@ function handleEditProfileFormSubmit(event) {
             console.error;
         })
         .finally(() => {
-            event.submitter.textContent = "Сохранение...";
+            event.submitter.textContent = "Сохранить";
         });
     closePopup(editPopup);
 }
@@ -174,7 +174,7 @@ function handleSubmitAvatar(event) {
             console.error;
         })
         .finally(() => {
-            event.submitter.textContent = "Сохранение...";
+            event.submitter.textContent = "Сохранить";
         });
     closePopup(addNewAvatarPopup);
 }

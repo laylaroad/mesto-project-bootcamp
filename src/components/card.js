@@ -12,9 +12,7 @@ function createCard(cardName, cardLink, cardLikes, cardId, owner) {
     const likeButton = cardElement.querySelector('.card__like');
     const likeCounter = cardElement.querySelector('.card__like-amount');
     const deleteButton = cardElement.querySelector('.card__delete');
-
     const cardLikeCount = cardLikes.length;
-
     cardImage.src = cardLink;
     cardImage.alt = cardName;
     cardTitle.textContent = cardName;
@@ -49,6 +47,7 @@ function createCard(cardName, cardLink, cardLikes, cardId, owner) {
     cardImage.addEventListener('click', function () {
         openPopup(cardPopup);
     })
+
     addCardElement(cardElement);
 
     return cardElement;
