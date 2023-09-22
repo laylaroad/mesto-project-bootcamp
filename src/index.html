@@ -46,7 +46,8 @@
             <button aria-label="Close" onclick="" type="button" class="popup__close"
                 id="edit-profile-close-button"></button>
 
-            <form name="" class="popup__form" id="popup-edit-profile" action="" method="POST" novalidate>
+            <form name="edit-profile-form" class="popup__form" id="popup-edit-profile" action="" method="POST"
+                novalidate>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input name="Имя и фамилия пользователя" id="name" type="text" class="popup__field"
                     placeholder="Имя и фамилия" value="Жак-Ив Кусто" required minlength="2" maxlength="200">
@@ -68,7 +69,7 @@
             <button aria-label="Close" onclick="" type="button" class="popup__close"
                 id="add-new-place-close-button"></button>
 
-            <form name="" class="popup__form" id="popup-add-new-card" action="" method="POST" novalidate>
+            <form name="new-card-form" class="popup__form" id="popup-add-new-card" action="" method="POST" novalidate>
                 <h2 class="popup__title" id="new_place_title">Новое место</h2>
                 <input name="Название" type="text" class="popup__field" id="place" placeholder="Название" required
                     minlength="2" maxlength="30">
@@ -101,7 +102,7 @@
             <button aria-label="Close" onclick="" type="button" class="popup__close"
                 id="add-new-avatar-button"></button>
 
-            <form name="" class="popup__form" id="new-avatar-form" action="" method="POST" novalidate>
+            <form name="new-avatar-form" class="popup__form" id="new-avatar-form" action="" method="POST" novalidate>
                 <h2 class="popup__title" id="new-avatar-title">Обновите аватар</h2>
 
                 <input name="Ссылка на картинку" type="url" class="popup__field" id="link"
@@ -125,7 +126,7 @@
                 <div class="card__like-wrapper">
                     <button type="button" aria-label="Нравится" class="card__like">
                     </button>
-                    <span class="card__like-amount">0</span>
+                    <span class="card__like-amount"></span>
                 </div>
                 <button type="button" aria-label="Удалить" class="card__delete"> </button>
             </div>

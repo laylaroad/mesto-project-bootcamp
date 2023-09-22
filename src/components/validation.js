@@ -30,6 +30,12 @@ function disableButton(button) {
     button.disabled = true;
 }
 
+// toggleButtonState(inputList, submitButton, settings);
+
+// formElement.addEventListener('reset', () => {
+//     disableButton(submitButton, settings)
+// });
+
 function checkButton(formElement, buttonSubmit) {
     if (formElement.checkValidity()) {
         enableButton(buttonSubmit)
@@ -56,4 +62,4 @@ function enableValidation(settings) {
         setEventListeners(formElement, settings));
 }
 
-export { enableValidation };
+export { enableValidation, disableButton };

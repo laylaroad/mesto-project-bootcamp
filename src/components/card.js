@@ -1,9 +1,12 @@
-import { openFullCard, cardPopup, cardsElements, profileId } from "../index.js";
+import { cardsElements, profileId } from "../index.js";
 import { addLike, deleteCard, deleteLike } from "./api.js";
 
 import { openPopup } from "./modal.js";
 
 const cardTemplate = document.querySelector('#card-template').content;
+const cardPopup = document.getElementById('full-card');
+const fullImage = cardPopup.querySelector('.full-card__image');
+const fullCaption = cardPopup.querySelector('.full-card__caption');
 
 function createCard(cardName, cardLink, cardLikes, cardId, owner) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -17,7 +20,6 @@ function createCard(cardName, cardLink, cardLikes, cardId, owner) {
     cardImage.alt = cardName;
     cardTitle.textContent = cardName;
     likeCounter.textContent = cardLikeCount;
-
 
     if (owner._id !== profileId) {
         deleteButton.remove();
@@ -35,12 +37,18 @@ function createCard(cardName, cardLink, cardLikes, cardId, owner) {
 
     likeButton.addEventListener('click', () => {
         if (likeButton.classList.contains('card__like_active')) {
-            handleLikeDelete(likeButton, cardLikeCount, cardId);
+            handleLikeDelete(likeButton, likeCounter, cardId);
         } else {
-            handleLikeAmount(likeButton, cardLikeCount, cardId);
+            handleLikeAdd(likeButton, likeCounter, cardId);
         }
     });
 
+    function openFullCard(cardLink, cardName) {
+        openPopup(cardPopup);
+        fullImage.src = cardLink;
+        fullImage.alt = cardName;
+        fullCaption.textContent = cardName;
+    };
     cardImage.addEventListener('click', () => {
         openFullCard(cardLink, cardName);
     })
@@ -57,21 +65,20 @@ function addCardElement(cardElement) {
     cardsElements.prepend(cardElement);
 }
 
-const handleLikeAmount = (likeButton, cardLikeCount, cardId) => {
+const handleLikeAdd = (likeButton, likeCounter, cardId) => {
     addLike(cardId)
         .then((res) => {
             likeButton.classList.add('card__like_active');
-            cardLikeCount = res.likes.length;
+            likeCounter.textContent = res.likes.length;
         })
         .catch(console.error);
 }
 
-const handleLikeDelete = (likeButton, cardLikeCount, cardId) => {
+const handleLikeDelete = (likeButton, likeCounter, cardId) => {
     deleteLike(cardId)
         .then((res) => {
-            cardLikeCount = res.likes.length || 0;
             likeButton.classList.remove('card__like_active');
-            console.log(res);
+            likeCounter.textContent = res.likes.length;
         })
         .catch(console.error);
 }
