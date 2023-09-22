@@ -67,6 +67,7 @@ Promise.all([getDataProfile(), getInitialCards()])
         profileAvatar.src = profileData.avatar;
         profileId = profileData._id;
 
+        cardsElements.reverse();
         cardsElements.forEach((cardElement => {
             createCard(cardElement.name, cardElement.link,
                 cardElement.likes, cardElement._id, cardElement.owner);
