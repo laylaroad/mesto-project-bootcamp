@@ -31,7 +31,7 @@ function createCard(cardName, cardLink, cardLikes, cardId, owner) {
             .catch(() => console.log(err));
     });
 
-    if (cardLikes.some(({ _id }) => _id === owner._id)) {
+    if (cardLikes.some(({ _id }) => _id === profileId)) {
         likeButton.classList.add('card__like_active');
     }
 
@@ -70,8 +70,9 @@ const handleLikeAmount = (likeButton, cardLikeCount, cardId) => {
 const handleLikeDelete = (likeButton, cardLikeCount, cardId) => {
     deleteLike(cardId)
         .then((res) => {
-            cardLikeCount = res.likes.length;
+            cardLikeCount = res.likes.length || 0;
             likeButton.classList.remove('card__like_active');
+            console.log(res);
         })
         .catch(console.error);
 }
