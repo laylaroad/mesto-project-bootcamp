@@ -1,44 +1,23 @@
 
-//делаем запрос к серверу
-
-const config = {
-    baseUrl: 'https://nomoreparties.co/v1/wbf-cohort-12',
-    headers: {
-        authorization: '5970e7b5-fad8-4b45-bc23-ee4a5f3f9441',
-        'Content-Type': 'application/json',
-    },
-};
-
-function checkResponse(res) {
-    if (res.ok) {
-        return res.json();
-    }
-    return Promise.reject(`Ошибка ${res.status}`);
-}
-
-function request(endpoint, options) {
-    return fetch(`${config.baseUrl}${endpoint}`, options).then(checkResponse);
-}
-
+import { request, config } from "./utils.js";
 
 //загрузка данных профиля с сервера
 function getDataProfile() {
-    return request(`/users/me`, {
+    return request(`${config.url}/users/me`, {
         headers: config.headers,
     })
 }
 
-
-//делаем запрос других карточек
+//запрос других карточек
 function getInitialCards() {
-    return request(`/cards`, {
+    return request(`${config.url}/cards`, {
         headers: config.headers,
     })
 }
 
 //редактирование профиля
 function editProfile(name, about) {
-    return request(`/users/me`, {
+    return request(`${config.url}/users/me`, {
         method: 'PATCH',
         headers: config.headers,
         body: JSON.stringify({
@@ -50,7 +29,7 @@ function editProfile(name, about) {
 
 //ставим лайк
 function addLike(id) {
-    return request(`/cards/likes/${id}`, {
+    return request(`${config.url}/cards/likes/${id}`, {
         method: 'PUT',
         headers: config.headers,
     })
@@ -58,7 +37,7 @@ function addLike(id) {
 
 //удаляем лайк
 function deleteLike(id) {
-    return request(`/cards/likes/${id}`, {
+    return request(`${config.url}/cards/likes/${id}`, {
         method: 'DELETE',
         headers: config.headers,
     })
@@ -66,7 +45,7 @@ function deleteLike(id) {
 
 //меняем аватар
 function newAvatar(link) {
-    return request(`/users/me/avatar`, {
+    return request(`${config.url}/users/me/avatar`, {
         method: 'PATCH',
         headers: config.headers,
         body: JSON.stringify({
@@ -78,7 +57,7 @@ function newAvatar(link) {
 
 //добавляем свою карточку
 function addNewCard(name, link) {
-    return request(`/cards`, {
+    return request(`${config.url}/cards`, {
         method: 'POST',
         headers: config.headers,
         body: JSON.stringify({
@@ -90,7 +69,7 @@ function addNewCard(name, link) {
 
 //удаляем свою карточку
 function deleteCard(id) {
-    return request(`/cards/${id}`, {
+    return request(`${config.url}/cards/${id}`, {
         method: 'DELETE',
         headers: config.headers
     })

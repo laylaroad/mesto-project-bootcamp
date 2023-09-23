@@ -44,9 +44,17 @@ function checkButton(formElement, buttonSubmit) {
     }
 }
 
+// toggleButtonState(inputList, submitButton, settings);
+//   formElement.addEventListener('reset', () => {
+//     disableButton(submitButton, settings)
+//   });
+
+
 function setEventListeners(formElement, settings) {
     const buttonSubmit = formElement.querySelector(settings.buttonSelector);
+
     disableButton(buttonSubmit);
+
     const inputList = formElement.querySelectorAll(settings.inputSelector);
 
     inputList.forEach((input) => {

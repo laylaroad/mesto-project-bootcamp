@@ -3,7 +3,7 @@ import './pages/index.css';
 
 import { enableValidation, disableButton } from "./components/validation.js";
 
-import { renderLoading } from "./components/utils.js"
+import { handleSubmit } from "./components/utils.js"
 
 import { validationSettings } from './components/constants.js';
 
@@ -47,7 +47,6 @@ const newAvatarForm = document.forms['new-avatar-form'];
 const addAvatarIcon = document.querySelector('.profile__avatar_edit');
 const avatarLinkInput = document.getElementById('link');
 
-
 export let profileId = "";
 
 Promise.all([getDataProfile(), getInitialCards()])
@@ -90,56 +89,43 @@ function changeAvatar() {
 }
 addAvatarIcon.addEventListener('click', changeAvatar);
 
-function handleNewPlaceFormSubmit(event) {
-    event.submitter.textContent = "Сохранение...";
-    event.preventDefault();
-    addNewCard(cardName.value, cardLink.value)
-        .then((res) => {
-            createCard(cardName.value, cardLink.value, res.likes, res._id, res.owner);
-            cardName.value = '';
-            cardLink.value = '';
-        })
-        .catch(console.error)
-        .finally(() => {
-            event.submitter.textContent = "Создать";
-            // renderLoading(isLoading, button, buttonText, loadingText);
-        });
-    closePopup(newCardPopup);
+function handleNewPlaceFormSubmit(evt) {
+    function makeRequest() {
+        return addNewCard(cardName.value, cardLink.value)
+            .then((res) => {
+                createCard(res.name, res.link, res.likes, res._id, res.owner);
+                evt.target.reset();
+                closePopup(newCardPopup);
+            });
+    }
+    handleSubmit(makeRequest, evt);
 }
-
 cardSubmitForm.addEventListener('submit', handleNewPlaceFormSubmit);
 
-
-function handleEditProfileFormSubmit(event) {
-    event.submitter.textContent = "Сохранение...";
-    event.preventDefault();
-    editProfile(nameInput.value, jobInput.value)
-        .then((res) => {
-            profileTitle.textContent = res.name;
-            profileJob.textContent = res.about;
-            disableButton(editProfileForm, validationSettings);
-        })
-        .catch(console.error)
-        .finally(() => {
-            event.submitter.textContent = "Сохранить";
-        });
-    closePopup(editPopup);
-}
 enableValidation(validationSettings);
+
+function handleEditProfileFormSubmit(evt) {
+    function makeRequest() {
+        return editProfile(nameInput.value, jobInput.value)
+            .then((res) => {
+                profileTitle.textContent = res.name;
+                profileJob.textContent = res.about;
+                evt.target.reset();
+                disableButton(editProfileForm, validationSettings);
+            });
+    }
+    handleSubmit(makeRequest, evt);
+}
 editProfileForm.addEventListener('submit', handleEditProfileFormSubmit);
 
-function handleSubmitAvatar(event) {
-    event.submitter.textContent = "Сохранение...";
-    event.preventDefault();
-
-    newAvatar(avatarLinkInput.value)
-        .then((profilaData) => {
-            profileAvatar.src = profilaData.avatar;
-        })
-        .catch(console.error)
-        .finally(() => {
-            event.submitter.textContent = "Сохранить";
-        });
-    closePopup(addNewAvatarPopup);
+function handleSubmitAvatar(evt) {
+    function makeRequest() {
+        return newAvatar(avatarLinkInput.value)
+            .then((profilaData) => {
+                profileAvatar.src = profilaData.avatar;
+                closePopup(addNewAvatarPopup);
+            });
+    }
+    handleSubmit(makeRequest, evt);
 }
 newAvatarForm.addEventListener('submit', handleSubmitAvatar);
