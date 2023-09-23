@@ -1,7 +1,7 @@
 
 import './pages/index.css';
 
-import { enableValidation, disableButton } from "./components/validation.js";
+import { enableValidation } from "./components/validation.js";
 
 import { handleSubmit } from "./components/utils.js"
 
@@ -68,7 +68,6 @@ Promise.all([getDataProfile(), getInitialCards()])
 profileEditButton.addEventListener('click', function () {
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileJob.textContent;
-    disableButton(editProfileForm, validationSettings);
     openPopup(editPopup);
 });
 
@@ -94,7 +93,6 @@ function handleNewPlaceFormSubmit(evt) {
         return addNewCard(cardName.value, cardLink.value)
             .then((res) => {
                 createCard(res.name, res.link, res.likes, res._id, res.owner);
-                evt.target.reset();
                 closePopup(newCardPopup);
             });
     }
@@ -110,8 +108,6 @@ function handleEditProfileFormSubmit(evt) {
             .then((res) => {
                 profileTitle.textContent = res.name;
                 profileJob.textContent = res.about;
-                evt.target.reset();
-                disableButton(editProfileForm, validationSettings);
             });
     }
     handleSubmit(makeRequest, evt);

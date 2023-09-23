@@ -30,12 +30,6 @@ function disableButton(button) {
     button.disabled = true;
 }
 
-// toggleButtonState(inputList, submitButton, settings);
-
-// formElement.addEventListener('reset', () => {
-//     disableButton(submitButton, settings)
-// });
-
 function checkButton(formElement, buttonSubmit) {
     if (formElement.checkValidity()) {
         enableButton(buttonSubmit)
@@ -44,16 +38,13 @@ function checkButton(formElement, buttonSubmit) {
     }
 }
 
-// toggleButtonState(inputList, submitButton, settings);
-//   formElement.addEventListener('reset', () => {
-//     disableButton(submitButton, settings)
-//   });
-
-
 function setEventListeners(formElement, settings) {
     const buttonSubmit = formElement.querySelector(settings.buttonSelector);
 
     disableButton(buttonSubmit);
+    formElement.addEventListener("reset", () => {
+        disableButton(buttonSubmit);
+    });
 
     const inputList = formElement.querySelectorAll(settings.inputSelector);
 

@@ -1,4 +1,3 @@
-// import { validationSettings } from "./constants.js";
 import { closePopup } from "./modal.js";
 import { disableButton } from "./validation.js";
 
