@@ -79,7 +79,6 @@ closePopupButtons.forEach((button) =>
     button.addEventListener('click', (evt) => {
         const popupClosest = evt.target.closest('.popup');
         closePopup(popupClosest);
-        console.log(popupClosest);
     })
 );
 
@@ -93,7 +92,6 @@ function handleNewPlaceFormSubmit(evt) {
         return addNewCard(cardName.value, cardLink.value)
             .then((res) => {
                 createCard(res.name, res.link, res.likes, res._id, res.owner);
-                closePopup(newCardPopup);
             });
     }
     handleSubmit(makeRequest, evt);
@@ -119,7 +117,6 @@ function handleSubmitAvatar(evt) {
         return newAvatar(avatarLinkInput.value)
             .then((profilaData) => {
                 profileAvatar.src = profilaData.avatar;
-                closePopup(addNewAvatarPopup);
             });
     }
     handleSubmit(makeRequest, evt);
