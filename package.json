@@ -4,8 +4,8 @@
   "description": "### Обзор",
   "main": "index.js",
   "scripts": {
-    "predeploy": "npm run build",
     "build": "webpack --mode production",
+    "predeploy": "npm run build",
     "dev": "webpack serve",
     "deploy": "gh-pages -d dist"
   },
