@@ -14,7 +14,7 @@
   visibility: hidden;
   transition: 0.3s ease-in-out;
 }
-/* 
+
 .popup:before {
   content: "";
   position: absolute;
@@ -24,4 +24,4 @@
   height: 100%;
   opacity: 0.3;
   background-color: #2a2c2f;
-} */
+}
