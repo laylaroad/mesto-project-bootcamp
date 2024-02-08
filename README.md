@@ -17,7 +17,7 @@
 - [Сайт](https://laylaroad.github.io/mesto-project-bootcamp/)
 
 **Технологии:**
-– HTML, CSS
+- HTML, CSS
 - JavaScript
 - Rest API
 - Webpack
