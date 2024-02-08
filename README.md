@@ -27,4 +27,4 @@
 - Nested структура по БЭМ;
 - Адаптивная верстка;
 - Grid-Layout;
-- Flexbox
+- Flexbox.
