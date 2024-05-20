@@ -1,31 +1,31 @@
-# Проект: Место
+# Study project: Mesto
 
-**Сервис, созданный по подобию инстаграма для выкладывания фотографий.**
+**A service similar to Instagram for sharing photos.**
 
-**Возможности веб-приложения:**
-- Менять аватар, имя и информацию о себе;
-- Добавлять новые фотокарточки и открывать их в полном размере в режиме просмотра.
+**Web application features:**
+- Change avatar, name, and personal information
+- Add new photo cards and view them in full size in the viewer mode
 
-**Ограничения веб-приложения:**
-  - Приложение создано в рамках учебного курса, и доступ к нему открыт лишь у участников определенной группы;
-  - В профиле отображается ограниченное количество карточек – 30;
-  - В приложение нельзя загрузить фото с устройства: карточки добавляются по ссылкам.
+**Web application limitations:**
+  - The application is created as part of a course, and access is only available to members of a specific group
+  - The profile displays a limited number of cards – 30
+  - Photos cannot be uploaded from a device; cards are added via links
 
-**Ссылки**
+**Links:**
 
-- [Макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-- [Сайт](https://laylaroad.github.io/mesto-project-bootcamp/)
+- [Figma Design](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+- [Website](https://laylaroad.github.io/mesto-project-bootcamp/)
 
-**Технологии:**
+**Technologies:**
 - HTML, CSS
 - JavaScript
 - Rest API
 - Webpack
 
-**Навыки, которые я применила в этом проекте:**
-- Валидация форм;
-- Реализация попапов;
-- Nested структура по БЭМ;
-- Адаптивная верстка;
-- Grid-Layout;
-- Flexbox.
+**Skills I applied in this projec**
+- Form validation
+- Popup implementation
+- Nested structure using BEM
+- Responsive design
+ -Grid-Layout
+- Flexbox
