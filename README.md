@@ -22,7 +22,7 @@
 - Rest API
 - Webpack
 
-**Skills I applied in this projec**
+**Skills I applied in this project:**
 - Form validation
 - Popup implementation
 - Nested structure using BEM
